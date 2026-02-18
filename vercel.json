@@ -4,6 +4,10 @@
   "outputDirectory": ".",
   "rewrites": [
     {
+      "source": "/gt-admin",
+      "destination": "/admin.html"
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "admin.sevillafreenowtaxi.com" }],
       "destination": "/admin.html"
@@ -32,6 +36,12 @@
   "headers": [
     {
       "source": "/admin.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/gt-admin",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
