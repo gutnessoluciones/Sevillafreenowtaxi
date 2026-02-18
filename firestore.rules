@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ======= REVIEWS =======
+    // Cualquiera puede leer (son públicas)
+    // Cualquiera puede crear (con validación)
+    // Nadie puede editar o borrar desde el cliente
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.name.size() <= 100
+                    && request.resource.data.rating is number
+                    && request.resource.data.rating >= 1
+                    && request.resource.data.rating <= 5
+                    && request.resource.data.comment is string
+                    && request.resource.data.comment.size() > 0
+                    && request.resource.data.comment.size() <= 1000;
+      allow update, delete: if false;
+    }
+
+    // ======= BOOKINGS =======
+    // Cualquiera puede crear una reserva (con validación)
+    // Lectura y actualización abiertas (panel admin sin Firebase Auth)
+    // TODO: Migrar a Firebase Auth para restringir lectura/update al admin
+    match /bookings/{bookingId} {
+      allow read: if true;
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.phone is string
+                    && request.resource.data.date is string
+                    && request.resource.data.time is string;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys()
+                      .hasOnly(['status']);
+      allow delete: if false;
+    }
+
+    // ======= NOTIFICATIONS =======
+    // Se crean al hacer una reserva, se leen/actualizan desde Cloud Functions
+    match /notifications/{notifId} {
+      allow create: if true;
+      allow read, update: if true;  // Cloud Functions necesita acceso
+      allow delete: if false;
+    }
+  }
+}

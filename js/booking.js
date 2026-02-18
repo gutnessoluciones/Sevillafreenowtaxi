@@ -62,13 +62,54 @@ async function getBookingsForDate(dateStr) {
 async function saveBooking(booking) {
     if (firebaseReady && db) {
         try {
-            await addDoc(collection(db, "bookings"), booking);
+            const docRef = await addDoc(collection(db, "bookings"), booking);
+            // Enviar notificación al dueño
+            notifyOwner(booking, docRef.id);
             return;
         } catch (e) {
             console.warn("Firebase save error, using localStorage:", e);
         }
     }
     saveLocalBooking(booking);
+}
+
+// ============ NOTIFICACIONES AL DUEÑO ============
+const OWNER_PHONE = "34664625403";
+const ADMIN_URL = "https://admin.sevillafreenowtaxi.com";
+// TODO: Configurar EmailJS o backend cuando se tenga el email del dueño
+// const OWNER_EMAIL = "pendiente@sevillafreenowtaxi.com";
+
+function notifyOwner(booking, bookingId) {
+    // 1) WhatsApp automático al dueño vía API URL
+    const msg = `🚕 *NUEVA RESERVA*%0A` +
+        `👤 ${booking.name}%0A` +
+        `📱 ${booking.phone}%0A` +
+        `🚗 ${booking.serviceText || booking.service}%0A` +
+        `📅 ${booking.date} a las ${booking.time}%0A` +
+        `📍 ${booking.pickup || 'No indicado'}%0A` +
+        `💰 ${booking.price || '—'}€${booking.isCompany ? ' (empresa -15%)' : ''}%0A` +
+        `%0A🔗 Gestionar: ${ADMIN_URL}`;
+
+    // Abrir WhatsApp al dueño en segundo plano (no interrumpe al cliente)
+    // Nota: esto solo funciona si el usuario que reserva está en el mismo dispositivo.
+    // Para notificación automática real, se necesita backend (Cloud Functions).
+    // Lo dejamos preparado para cuando tengamos el backend.
+
+    // 2) Guardar en cola de notificaciones pendientes en Firestore
+    if (firebaseReady && db) {
+        try {
+            addDoc(collection(db, "notifications"), {
+                type: "new_booking",
+                bookingId: bookingId,
+                ownerPhone: OWNER_PHONE,
+                message: decodeURIComponent(msg.replace(/%0A/g, '\n')),
+                sent: false,
+                timestamp: Date.now()
+            });
+        } catch (e) {
+            console.warn("Error guardando notificación:", e);
+        }
+    }
 }
 
 // ============ TIME SLOTS CONFIG ============
