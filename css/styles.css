@@ -2126,6 +2126,12 @@ img {
 /* ============================================
    FLOATING ACTION BUTTONS GROUP
    ============================================ */
+
+/* Hide reCAPTCHA floating badge (attribution in footer per Google TOS) */
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
+
 .fab-group {
     position: fixed;
     bottom: 20px;
@@ -2876,5 +2882,21 @@ img {
 }
 
 .footer-legal a:hover {
+    color: var(--primary);
+}
+
+.recaptcha-notice {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-top: 8px;
+}
+
+.recaptcha-notice a {
+    color: var(--text-muted);
+    text-decoration: underline;
+}
+
+.recaptcha-notice a:hover {
     color: var(--primary);
 }
