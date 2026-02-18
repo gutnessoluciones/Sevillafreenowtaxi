@@ -194,8 +194,10 @@ const translations = {
         "footer.legal": "Aviso Legal",
         "footer.privacy": "Política de Privacidad",
         "footer.cookies": "Política de Cookies",
+        // FAB buttons
+        "fab.call": "Llamar",
+        "fab.book": "Reservar",
     },
-    en: {
         // Nav
         "nav.inicio": "Home",
         "nav.servicios": "Services",
@@ -382,8 +384,10 @@ const translations = {
         "footer.legal": "Legal Notice",
         "footer.privacy": "Privacy Policy",
         "footer.cookies": "Cookie Policy",
+        // FAB buttons
+        "fab.call": "Call",
+        "fab.book": "Book Now",
     },
-    fr: {
         // Nav
         "nav.inicio": "Accueil",
         "nav.servicios": "Services",
@@ -570,8 +574,10 @@ const translations = {
         "footer.legal": "Mentions Légales",
         "footer.privacy": "Politique de Confidentialité",
         "footer.cookies": "Politique de Cookies",
+        // FAB buttons
+        "fab.call": "Appeler",
+        "fab.book": "Réserver",
     }
-};
 
 // ============ i18n ENGINE ============
 const STORAGE_KEY = 'sevillataxi_lang';

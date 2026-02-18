@@ -2123,34 +2123,120 @@ img {
 /* ============================================
    WHATSAPP FLOAT
    ============================================ */
-.whatsapp-float {
+/* ============================================
+   FLOATING ACTION BUTTONS GROUP
+   ============================================ */
+.fab-group {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 60px;
-    height: 60px;
-    background: #25D366;
-    border-radius: 50%;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+    align-items: flex-end;
+}
+
+.fab-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     color: white;
-    font-size: 1.8rem;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    z-index: 999;
+    font-size: 1.2rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
     transition: var(--transition);
-    animation: whatsappPulse 2s infinite;
+    text-decoration: none;
+    position: relative;
 }
 
-.whatsapp-float:hover {
+.fab-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
     color: white;
 }
 
-@keyframes whatsappPulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-    50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0.1); }
+.fab-label {
+    position: absolute;
+    right: 56px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    font-family: var(--font-body);
+}
+
+.fab-btn:hover .fab-label {
+    opacity: 1;
+}
+
+/* WhatsApp */
+.fab-whatsapp {
+    background: #25D366;
+    box-shadow: 0 3px 12px rgba(37, 211, 102, 0.4);
+    animation: fabPulse-whatsapp 2.5s infinite;
+}
+.fab-whatsapp:hover {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6);
+}
+
+/* Llamar */
+.fab-call {
+    background: #0088cc;
+    box-shadow: 0 3px 12px rgba(0, 136, 204, 0.35);
+}
+.fab-call:hover {
+    box-shadow: 0 4px 20px rgba(0, 136, 204, 0.55);
+}
+
+/* Reservar */
+.fab-book {
+    background: var(--accent);
+    box-shadow: 0 3px 12px rgba(212, 175, 55, 0.35);
+}
+.fab-book:hover {
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.55);
+}
+
+@keyframes fabPulse-whatsapp {
+    0%, 100% { box-shadow: 0 3px 12px rgba(37, 211, 102, 0.4); }
+    50% { box-shadow: 0 3px 12px rgba(37, 211, 102, 0.4), 0 0 0 8px rgba(37, 211, 102, 0.1); }
+}
+
+/* Desktop: solo WhatsApp visible, layout horizontal abajo-derecha */
+@media (min-width: 769px) {
+    .fab-call,
+    .fab-book {
+        display: none;
+    }
+    .fab-btn {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile: los 3 visibles, layout vertical compacto */
+@media (max-width: 768px) {
+    .fab-group {
+        bottom: 16px;
+        right: 14px;
+        gap: 8px;
+    }
+    .fab-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+    .fab-label {
+        display: none;
+    }
 }
 
 /* ============================================
