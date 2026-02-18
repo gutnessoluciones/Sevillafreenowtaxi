@@ -186,9 +186,15 @@ const translations = {
         "pt.airport": "Aeropuerto Sevilla",
         "pt.parcels": "Paquetería",
         "pt.waiting": "Hora de Espera",
-    },
 
-    // ======================== ENGLISH ========================
+        // Cookies & Legal
+        "cookies.text": "Utilizamos cookies propias y de terceros para el funcionamiento del sitio web y protección contra spam (reCAPTCHA). Puedes consultar más información en nuestra <a href='/politica-cookies'>Política de Cookies</a>.",
+        "cookies.accept": "Aceptar",
+        "cookies.reject": "Rechazar",
+        "footer.legal": "Aviso Legal",
+        "footer.privacy": "Política de Privacidad",
+        "footer.cookies": "Política de Cookies",
+    },
     en: {
         // Nav
         "nav.inicio": "Home",
@@ -368,9 +374,15 @@ const translations = {
         "pt.airport": "Seville Airport",
         "pt.parcels": "Parcel Delivery",
         "pt.waiting": "Waiting Hour",
-    },
 
-    // ======================== FRANÇAIS ========================
+        // Cookies & Legal
+        "cookies.text": "We use our own and third-party cookies for the operation of this website and spam protection (reCAPTCHA). You can find more information in our <a href='/politica-cookies'>Cookie Policy</a>.",
+        "cookies.accept": "Accept",
+        "cookies.reject": "Decline",
+        "footer.legal": "Legal Notice",
+        "footer.privacy": "Privacy Policy",
+        "footer.cookies": "Cookie Policy",
+    },
     fr: {
         // Nav
         "nav.inicio": "Accueil",
@@ -550,6 +562,14 @@ const translations = {
         "pt.airport": "Aéroport de Séville",
         "pt.parcels": "Livraison de Colis",
         "pt.waiting": "Heure d'Attente",
+
+        // Cookies & Legal
+        "cookies.text": "Nous utilisons des cookies propres et de tiers pour le fonctionnement du site web et la protection anti-spam (reCAPTCHA). Consultez notre <a href='/politica-cookies'>Politique de Cookies</a> pour plus d'informations.",
+        "cookies.accept": "Accepter",
+        "cookies.reject": "Refuser",
+        "footer.legal": "Mentions Légales",
+        "footer.privacy": "Politique de Confidentialité",
+        "footer.cookies": "Politique de Cookies",
     }
 };
 

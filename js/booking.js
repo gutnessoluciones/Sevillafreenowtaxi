@@ -361,7 +361,34 @@ function shakeField(id) {
     setTimeout(() => el.classList.remove('shake'), 600);
 }
 
+// ============ RECAPTCHA v3 ============
+const RECAPTCHA_SITE_KEY = 'RECAPTCHA_SITE_KEY_PLACEHOLDER'; // TODO: Replace with real key
+
+async function verifyRecaptcha() {
+    if (RECAPTCHA_SITE_KEY === 'RECAPTCHA_SITE_KEY_PLACEHOLDER' || typeof grecaptcha === 'undefined') {
+        console.warn('reCAPTCHA not configured, skipping verification');
+        return true; // Skip if not configured yet
+    }
+    try {
+        const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'booking' });
+        // In a production setup with a backend, you'd verify this token server-side.
+        // For a static site, the token generation itself provides basic bot protection.
+        // reCAPTCHA v3 assigns a score (0.0-1.0) where 1.0 is very likely human.
+        return !!token;
+    } catch (e) {
+        console.warn('reCAPTCHA error:', e);
+        return true; // Don't block on reCAPTCHA failure
+    }
+}
+
 async function confirmBooking() {
+    // Verify reCAPTCHA before proceeding
+    const recaptchaOk = await verifyRecaptcha();
+    if (!recaptchaOk) {
+        alert('No se pudo verificar reCAPTCHA. Inténtalo de nuevo.');
+        return;
+    }
+
     const nombre = document.getElementById('bk-nombre').value.trim();
     const telefono = document.getElementById('bk-telefono').value.trim();
     const servicio = document.getElementById('bk-servicio');
