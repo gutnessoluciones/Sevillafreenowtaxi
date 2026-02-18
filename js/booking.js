@@ -84,7 +84,7 @@ async function saveBooking(booking) {
 
 // ============ WHATSAPP NOTIFICACIÓN AL DUEÑO ============
 const OWNER_PHONE = "34685579928";
-const ADMIN_URL = "https://admin.sevillafreenowtaxi.com";
+const ADMIN_URL = "https://sevillafreenowtaxi.com/gt-admin";
 
 function buildOwnerWhatsAppUrl(booking) {
     const finalPrice = booking.isCompany
