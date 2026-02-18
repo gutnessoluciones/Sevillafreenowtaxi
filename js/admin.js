@@ -76,6 +76,100 @@ document.getElementById('logoutBtn')?.addEventListener('click', logout);
 // ============ DATA ============
 let allBookings = [];
 let unsubscribe = null;
+let previousBookingIds = new Set();
+let isFirstLoad = true;
+
+// ============ NOTIFICATION SOUND ============
+function playNotificationSound() {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        // Melodía de 3 notas: alegre y profesional
+        const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+        notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.4);
+            osc.start(ctx.currentTime + i * 0.15);
+            osc.stop(ctx.currentTime + i * 0.15 + 0.4);
+        });
+    } catch (e) {
+        console.warn('Audio not available:', e);
+    }
+}
+
+// ============ BROWSER NOTIFICATIONS ============
+function requestNotificationPermission() {
+    if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+    }
+}
+
+function showBrowserNotification(booking) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+        const notif = new Notification('🚕 Nueva Reserva', {
+            body: `${booking.name} — ${booking.date} a las ${booking.time}\n${serviceLabel(booking.service)}`,
+            icon: 'img/icon-192.png',
+            badge: 'img/favicon-32.png',
+            tag: 'new-booking-' + booking.timestamp,
+            requireInteraction: true
+        });
+        notif.onclick = () => {
+            window.focus();
+            notif.close();
+        };
+    }
+}
+
+function showInAppAlert(booking) {
+    const alert = document.createElement('div');
+    alert.className = 'new-booking-alert';
+    alert.innerHTML = `
+        <div class="alert-content">
+            <i class="fas fa-bell"></i>
+            <div>
+                <strong>¡Nueva reserva!</strong>
+                <span>${booking.name} — ${booking.date} ${booking.time}</span>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" class="alert-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    document.body.appendChild(alert);
+    setTimeout(() => alert.classList.add('show'), 10);
+    setTimeout(() => {
+        alert.classList.remove('show');
+        setTimeout(() => alert.remove(), 300);
+    }, 8000);
+}
+
+function checkForNewBookings(currentBookings) {
+    if (isFirstLoad) {
+        // First load: just save IDs, no notification
+        previousBookingIds = new Set(currentBookings.map(b => b.id));
+        isFirstLoad = false;
+        return;
+    }
+
+    const currentIds = new Set(currentBookings.map(b => b.id));
+    const newBookings = currentBookings.filter(b => !previousBookingIds.has(b.id));
+
+    if (newBookings.length > 0) {
+        // New booking(s) detected!
+        newBookings.forEach(booking => {
+            playNotificationSound();
+            showBrowserNotification(booking);
+            showInAppAlert(booking);
+        });
+    }
+
+    previousBookingIds = currentIds;
+}
 
 // ============ DATE HELPERS ============
 const DAYS_ES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -145,6 +239,7 @@ function serviceLabel(val) {
 
 // ============ DASHBOARD INIT ============
 function initDashboard() {
+    requestNotificationPermission();
     setupFilters();
     startRealtimeListener();
 }
@@ -167,6 +262,7 @@ function startRealtimeListener() {
                 return (b.time || '').localeCompare(a.time || '');
             });
 
+            checkForNewBookings(allBookings);
             updateStats();
             renderBookings();
             updateNextBookingBanner();

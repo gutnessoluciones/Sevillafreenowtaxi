@@ -62,9 +62,7 @@ async function getBookingsForDate(dateStr) {
 async function saveBooking(booking) {
     if (firebaseReady && db) {
         try {
-            const docRef = await addDoc(collection(db, "bookings"), booking);
-            // Enviar notificación al dueño
-            notifyOwner(booking, docRef.id);
+            await addDoc(collection(db, "bookings"), booking);
             return;
         } catch (e) {
             console.warn("Firebase save error, using localStorage:", e);
@@ -73,43 +71,26 @@ async function saveBooking(booking) {
     saveLocalBooking(booking);
 }
 
-// ============ NOTIFICACIONES AL DUEÑO ============
+// ============ WHATSAPP NOTIFICACIÓN AL DUEÑO ============
 const OWNER_PHONE = "34664625403";
 const ADMIN_URL = "https://admin.sevillafreenowtaxi.com";
-// TODO: Configurar EmailJS o backend cuando se tenga el email del dueño
-// const OWNER_EMAIL = "pendiente@sevillafreenowtaxi.com";
 
-function notifyOwner(booking, bookingId) {
-    // 1) WhatsApp automático al dueño vía API URL
-    const msg = `🚕 *NUEVA RESERVA*%0A` +
-        `👤 ${booking.name}%0A` +
-        `📱 ${booking.phone}%0A` +
-        `🚗 ${booking.serviceText || booking.service}%0A` +
-        `📅 ${booking.date} a las ${booking.time}%0A` +
-        `📍 ${booking.pickup || 'No indicado'}%0A` +
-        `💰 ${booking.price || '—'}€${booking.isCompany ? ' (empresa -15%)' : ''}%0A` +
-        `%0A🔗 Gestionar: ${ADMIN_URL}`;
+function buildOwnerWhatsAppUrl(booking) {
+    const finalPrice = booking.isCompany
+        ? (parseFloat(booking.price) * 0.85).toFixed(2)
+        : booking.price;
 
-    // Abrir WhatsApp al dueño en segundo plano (no interrumpe al cliente)
-    // Nota: esto solo funciona si el usuario que reserva está en el mismo dispositivo.
-    // Para notificación automática real, se necesita backend (Cloud Functions).
-    // Lo dejamos preparado para cuando tengamos el backend.
+    let msg = `🚕 *NUEVA RESERVA*\n\n`;
+    msg += `👤 ${booking.name}\n`;
+    msg += `📱 ${booking.phone}\n`;
+    msg += `🚗 ${booking.serviceText || booking.service}\n`;
+    msg += `📅 ${booking.date} a las ${booking.time}\n`;
+    msg += `📍 Recogida: ${booking.pickup || 'No indicado'}\n`;
+    msg += `👥 ${booking.passengers || '—'} pasajeros\n`;
+    msg += `💰 ${finalPrice}€${booking.isCompany ? ' (empresa -15%)' : ''}\n`;
+    msg += `\n🔗 *Gestionar:* ${ADMIN_URL}`;
 
-    // 2) Guardar en cola de notificaciones pendientes en Firestore
-    if (firebaseReady && db) {
-        try {
-            addDoc(collection(db, "notifications"), {
-                type: "new_booking",
-                bookingId: bookingId,
-                ownerPhone: OWNER_PHONE,
-                message: decodeURIComponent(msg.replace(/%0A/g, '\n')),
-                sent: false,
-                timestamp: Date.now()
-            });
-        } catch (e) {
-            console.warn("Error guardando notificación:", e);
-        }
-    }
+    return `https://wa.me/${OWNER_PHONE}?text=${encodeURIComponent(msg)}`;
 }
 
 // ============ TIME SLOTS CONFIG ============
@@ -378,6 +359,9 @@ async function confirmBooking() {
     // Save to DB
     await saveBooking(booking);
 
+    // Build WhatsApp URL for owner notification
+    const ownerWaUrl = buildOwnerWhatsAppUrl(booking);
+
     // Show confirmation
     const priceNum = parseFloat(price);
     const finalPrice = esEmpresa ? (priceNum * 0.85).toFixed(2) : priceNum;
@@ -393,7 +377,7 @@ async function confirmBooking() {
         <div class="confirm-row total"><span><i class="fas fa-tag"></i> Precio</span><strong>${esEmpresa ? finalPrice : price}€</strong></div>
     `;
 
-    // Build WhatsApp link
+    // WhatsApp link for client to contact
     let msg = `🚖 *RESERVA CONFIRMADA*\n\n`;
     msg += `👤 *Nombre:* ${nombre}\n`;
     msg += `📞 *Teléfono:* ${telefono}\n`;
@@ -407,6 +391,9 @@ async function confirmBooking() {
     msg += `\n\n_Reserva automática desde sevillafreenowtaxi.com_`;
 
     document.getElementById('confirmWhatsApp').href = `https://wa.me/34664625403?text=${encodeURIComponent(msg)}`;
+
+    // Auto-open WhatsApp to notify the owner (opens in new tab, user sends)
+    window.open(ownerWaUrl, '_blank');
 
     showStep(3);
 }
