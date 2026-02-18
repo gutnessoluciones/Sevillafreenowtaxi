@@ -512,6 +512,15 @@ window.adminActions = {
                     newStatus === 'completada' ? 'success' : 'warning'
                 );
             }
+
+            // Auto-open WhatsApp on confirm
+            if (newStatus === 'confirmada') {
+                const booking = allBookings.find(b => b.id === bookingId);
+                if (booking && booking.phone) {
+                    this.whatsapp(booking.phone, booking.name, booking.date, booking.time);
+                    showAdminToast('✅ Reserva confirmada — WhatsApp enviado', 'success');
+                }
+            }
             // onSnapshot actualizará automáticamente
         } catch (e) {
             console.error("Error actualizando estado:", e);
