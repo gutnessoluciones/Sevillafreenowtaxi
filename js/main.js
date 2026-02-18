@@ -97,10 +97,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- Hero Typed Text Effect ----
     const heroTyped = document.getElementById('heroTyped');
     if (heroTyped) {
-        const words = ['estilo', 'confianza', 'puntualidad', 'confort'];
+        let words = ['estilo', 'confianza', 'puntualidad', 'confort'];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
+
+        // Allow i18n to update words dynamically
+        window.updateTypedWords = function(newWords) {
+            if (Array.isArray(newWords) && newWords.length) {
+                words = newWords;
+                wordIndex = 0;
+                charIndex = 0;
+                isDeleting = false;
+                heroTyped.textContent = '';
+            }
+        };
 
         function typeEffect() {
             const currentWord = words[wordIndex];
