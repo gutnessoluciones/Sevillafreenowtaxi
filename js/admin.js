@@ -171,6 +171,19 @@ function checkForNewBookings(currentBookings) {
     previousBookingIds = currentIds;
 }
 
+// ============ ADMIN TOAST ============
+function showAdminToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `admin-toast ${type}`;
+    toast.innerHTML = `<span>${message}</span>`;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
+
 // ============ DATE HELPERS ============
 const DAYS_ES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 const MONTHS_ES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -478,9 +491,27 @@ function escapeAttr(str) {
 // ============ ACTIONS ============
 window.adminActions = {
     async setStatus(bookingId, newStatus) {
+        const statusLabels = {
+            confirmada: 'confirmar',
+            completada: 'completar (se liberarán las horas)',
+            cancelada: 'cancelar (se liberarán las horas)'
+        };
+
+        const action = statusLabels[newStatus] || newStatus;
+        if (!confirm(`¿Seguro que quieres ${action} esta reserva?`)) return;
+
         try {
             const docRef = doc(db, "bookings", bookingId);
             await updateDoc(docRef, { status: newStatus });
+
+            if (newStatus === 'completada' || newStatus === 'cancelada') {
+                showAdminToast(
+                    newStatus === 'completada'
+                        ? '✅ Viaje completado — horas liberadas'
+                        : '❌ Reserva cancelada — horas liberadas',
+                    newStatus === 'completada' ? 'success' : 'warning'
+                );
+            }
             // onSnapshot actualizará automáticamente
         } catch (e) {
             console.error("Error actualizando estado:", e);

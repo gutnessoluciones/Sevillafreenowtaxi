@@ -51,12 +51,23 @@ async function getBookingsForDate(dateStr) {
         try {
             const q = query(collection(db, "bookings"), where("date", "==", dateStr));
             const snap = await getDocs(q);
-            return snap.docs.map(d => d.data());
+            // Solo contar reservas activas (excluir canceladas y completadas)
+            return snap.docs
+                .map(d => d.data())
+                .filter(b => {
+                    const st = (b.status || 'pendiente').toLowerCase();
+                    return st !== 'cancelada' && st !== 'completada';
+                });
         } catch (e) {
             console.warn("Firebase error, using localStorage:", e);
         }
     }
-    return getLocalBookings().filter(b => b.date === dateStr);
+    return getLocalBookings()
+        .filter(b => b.date === dateStr)
+        .filter(b => {
+            const st = (b.status || 'pendiente').toLowerCase();
+            return st !== 'cancelada' && st !== 'completada';
+        });
 }
 
 async function saveBooking(booking) {
@@ -91,6 +102,32 @@ function buildOwnerWhatsAppUrl(booking) {
     msg += `\n🔗 *Gestionar:* ${ADMIN_URL}`;
 
     return `https://wa.me/${OWNER_PHONE}?text=${encodeURIComponent(msg)}`;
+}
+
+// ============ MINIMUM ADVANCE BOOKING (12 hours) ============
+const MIN_ADVANCE_HOURS = 12;
+
+function getMinBookingTime() {
+    const min = new Date();
+    min.setHours(min.getHours() + MIN_ADVANCE_HOURS);
+    return min;
+}
+
+function isDateFullyBlocked(dateStr) {
+    // Check if all possible slots on this date are before the 12h minimum
+    const minTime = getMinBookingTime();
+    const [y, m, d] = dateStr.split('-').map(Number);
+    // Last possible slot of the day at SLOT_END - 1 hour
+    const lastSlot = new Date(y, m - 1, d, SLOT_END - 1, 30);
+    return lastSlot < minTime;
+}
+
+function isSlotBeforeMinAdvance(dateStr, slotStr) {
+    const minTime = getMinBookingTime();
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const [sh, sm] = slotStr.split(':').map(Number);
+    const slotTime = new Date(y, m - 1, d, sh, sm);
+    return slotTime < minTime;
 }
 
 // ============ TIME SLOTS CONFIG ============
@@ -169,13 +206,14 @@ function renderCalendar() {
         const isPast = date < today;
         const isToday = date.getTime() === today.getTime();
         const isSelected = selectedDate === dateStr;
+        const isTooSoon = !isPast && isDateFullyBlocked(dateStr);
 
         let cls = 'cal-day';
-        if (isPast) cls += ' past';
+        if (isPast || isTooSoon) cls += ' past';
         if (isToday) cls += ' today';
         if (isSelected) cls += ' selected';
 
-        html += `<div class="${cls}" data-date="${dateStr}" ${isPast ? '' : 'role="button" tabindex="0"'}>${d}</div>`;
+        html += `<div class="${cls}" data-date="${dateStr}" ${(isPast || isTooSoon) ? '' : 'role="button" tabindex="0"'}>${d}</div>`;
     }
 
     daysEl.innerHTML = html;
@@ -231,8 +269,6 @@ async function onDateSelect(dateStr) {
 
     // Render slots
     let html = '';
-    const now = new Date();
-    const isToday = dateStr === formatDate(now);
 
     allSlots.forEach((slot, idx) => {
         // Check if this slot + duration is fully available
@@ -244,12 +280,9 @@ async function onDateSelect(dateStr) {
             }
         }
 
-        // Check if slot is in the past for today
-        if (isToday) {
-            const [sh, sm] = slot.split(':').map(Number);
-            if (sh < now.getHours() || (sh === now.getHours() && sm <= now.getMinutes())) {
-                isBlocked = true;
-            }
+        // Check if slot is within the 12h minimum advance window
+        if (!isBlocked && isSlotBeforeMinAdvance(dateStr, slot)) {
+            isBlocked = true;
         }
 
         // Check if service would extend beyond operating hours
