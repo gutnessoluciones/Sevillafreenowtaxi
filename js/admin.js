@@ -533,7 +533,7 @@ window.adminActions = {
         const fullPhone = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
         const { day } = prettyDate(date);
         const msg = encodeURIComponent(
-            `Hola ${name}, le confirmamos su reserva de taxi para el ${day} a las ${time}. ¡Gracias por confiar en Sevilla FreeNow Taxi! 🚕`
+            `Hola ${name}, le confirmamos su reserva de taxi para el ${day} a las ${time}. Gracias por confiar en Sevilla FreeNow Taxi!`
         );
         window.open(`https://wa.me/${fullPhone}?text=${msg}`, '_blank');
     }

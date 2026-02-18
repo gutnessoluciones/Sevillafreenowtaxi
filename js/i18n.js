@@ -197,9 +197,18 @@ const translations = {
         // FAB buttons
         "fab.call": "Llamar",
         "fab.book": "Reservar",
+        // Cookie config
+        "cookies.config": "Configurar",
+        "cookies.onlyNecessary": "Solo necesarias",
+        "cookies.acceptAll": "Aceptar todas",
+        "cookies.save": "Guardar preferencias",
+        "cookies.necessary": "Estrictamente necesarias",
+        "cookies.necessaryDesc": "Esenciales para el funcionamiento del sitio (idioma, sesión, consentimiento). No se pueden desactivar.",
+        "cookies.thirdParty": "Terceros (reCAPTCHA)",
+        "cookies.thirdPartyDesc": "Google reCAPTCHA para protección anti-spam en el formulario de reservas.",
     },
+    en: {
         // Nav
-        "nav.inicio": "Home",
         "nav.servicios": "Services",
         "nav.tarifas": "Rates",
         "nav.rutas": "Routes",
@@ -387,7 +396,17 @@ const translations = {
         // FAB buttons
         "fab.call": "Call",
         "fab.book": "Book Now",
+        // Cookie config
+        "cookies.config": "Set up",
+        "cookies.onlyNecessary": "Only necessary",
+        "cookies.acceptAll": "Accept all",
+        "cookies.save": "Save preferences",
+        "cookies.necessary": "Strictly necessary",
+        "cookies.necessaryDesc": "Essential for the website to function (language, session, consent). Cannot be disabled.",
+        "cookies.thirdParty": "Third-party (reCAPTCHA)",
+        "cookies.thirdPartyDesc": "Google reCAPTCHA for spam protection on the booking form.",
     },
+    fr: {
         // Nav
         "nav.inicio": "Accueil",
         "nav.servicios": "Services",
@@ -577,7 +596,17 @@ const translations = {
         // FAB buttons
         "fab.call": "Appeler",
         "fab.book": "Réserver",
+        // Cookie config
+        "cookies.config": "Configurer",
+        "cookies.onlyNecessary": "Nécessaires uniquement",
+        "cookies.acceptAll": "Tout accepter",
+        "cookies.save": "Enregistrer les préférences",
+        "cookies.necessary": "Strictement nécessaires",
+        "cookies.necessaryDesc": "Essentiels au fonctionnement du site (langue, session, consentement). Ne peuvent pas être désactivés.",
+        "cookies.thirdParty": "Tiers (reCAPTCHA)",
+        "cookies.thirdPartyDesc": "Google reCAPTCHA pour la protection anti-spam du formulaire de réservation.",
     }
+};
 
 // ============ i18n ENGINE ============
 const STORAGE_KEY = 'sevillataxi_lang';

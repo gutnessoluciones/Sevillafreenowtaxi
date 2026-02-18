@@ -171,35 +171,92 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ---- Cookie Consent Banner ----
+    // ---- Cookie Consent Banner (RGPD) ----
     const cookieBanner = document.getElementById('cookieBanner');
-    const cookieAccept = document.getElementById('cookieAccept');
-    const cookieReject = document.getElementById('cookieReject');
+    const cookieAcceptAll = document.getElementById('cookieAcceptAll');
+    const cookieOnlyNecessary = document.getElementById('cookieOnlyNecessary');
+    const cookieConfigBtn = document.getElementById('cookieConfigBtn');
+    const cookieConfigPanel = document.getElementById('cookieConfigPanel');
+    const cookieSave = document.getElementById('cookieSave');
+    const cookieThirdParty = document.getElementById('cookieThirdParty');
 
-    function getCookieConsent() {
-        try { return localStorage.getItem('cookie_consent'); } catch { return null; }
+    function getCookiePrefs() {
+        try {
+            const stored = localStorage.getItem('cookie_prefs');
+            return stored ? JSON.parse(stored) : null;
+        } catch { return null; }
     }
 
-    function setCookieConsent(value) {
-        try { localStorage.setItem('cookie_consent', value); } catch {}
+    function setCookiePrefs(prefs) {
+        try {
+            localStorage.setItem('cookie_prefs', JSON.stringify(prefs));
+            // Also keep legacy key for backward compat
+            localStorage.setItem('cookie_consent', prefs.thirdParty ? 'accepted' : 'necessary_only');
+        } catch {}
     }
 
-    if (cookieBanner && !getCookieConsent()) {
-        // Show banner after a small delay
-        setTimeout(() => cookieBanner.classList.add('visible'), 1000);
+    function applyCookiePrefs(prefs) {
+        // If third-party cookies rejected, disable reCAPTCHA script
+        if (!prefs.thirdParty) {
+            const recaptchaScript = document.querySelector('script[src*="recaptcha"]');
+            if (recaptchaScript) recaptchaScript.remove();
+        }
     }
 
-    if (cookieAccept) {
-        cookieAccept.addEventListener('click', () => {
-            setCookieConsent('accepted');
+    function hideBanner() {
+        if (cookieBanner) {
             cookieBanner.classList.remove('visible');
+            if (cookieConfigPanel) cookieConfigPanel.classList.remove('open');
+        }
+    }
+
+    // Show banner if no prefs stored
+    const existingPrefs = getCookiePrefs();
+    if (cookieBanner && !existingPrefs) {
+        setTimeout(() => cookieBanner.classList.add('visible'), 1000);
+    } else if (existingPrefs) {
+        applyCookiePrefs(existingPrefs);
+    }
+
+    // Accept all
+    if (cookieAcceptAll) {
+        cookieAcceptAll.addEventListener('click', () => {
+            const prefs = { necessary: true, thirdParty: true };
+            setCookiePrefs(prefs);
+            applyCookiePrefs(prefs);
+            hideBanner();
         });
     }
 
-    if (cookieReject) {
-        cookieReject.addEventListener('click', () => {
-            setCookieConsent('rejected');
-            cookieBanner.classList.remove('visible');
+    // Only necessary
+    if (cookieOnlyNecessary) {
+        cookieOnlyNecessary.addEventListener('click', () => {
+            const prefs = { necessary: true, thirdParty: false };
+            setCookiePrefs(prefs);
+            applyCookiePrefs(prefs);
+            hideBanner();
+        });
+    }
+
+    // Toggle config panel
+    if (cookieConfigBtn) {
+        cookieConfigBtn.addEventListener('click', () => {
+            if (cookieConfigPanel) {
+                cookieConfigPanel.classList.toggle('open');
+            }
+        });
+    }
+
+    // Save custom preferences
+    if (cookieSave) {
+        cookieSave.addEventListener('click', () => {
+            const prefs = {
+                necessary: true,
+                thirdParty: cookieThirdParty ? cookieThirdParty.checked : false
+            };
+            setCookiePrefs(prefs);
+            applyCookiePrefs(prefs);
+            hideBanner();
         });
     }
 

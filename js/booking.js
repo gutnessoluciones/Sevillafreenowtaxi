@@ -91,15 +91,15 @@ function buildOwnerWhatsAppUrl(booking) {
         ? (parseFloat(booking.price) * 0.85).toFixed(2)
         : booking.price;
 
-    let msg = `🚕 *NUEVA RESERVA*\n\n`;
-    msg += `👤 ${booking.name}\n`;
-    msg += `📱 ${booking.phone}\n`;
-    msg += `🚗 ${booking.serviceText || booking.service}\n`;
-    msg += `📅 ${booking.date} a las ${booking.time}\n`;
-    msg += `📍 Recogida: ${booking.pickup || 'No indicado'}\n`;
-    msg += `👥 ${booking.passengers || '—'} pasajeros\n`;
-    msg += `💰 ${finalPrice}€${booking.isCompany ? ' (empresa -15%)' : ''}\n`;
-    msg += `\n🔗 *Gestionar:* ${ADMIN_URL}`;
+    let msg = `*NUEVA RESERVA*\n\n`;
+    msg += `Nombre: ${booking.name}\n`;
+    msg += `Telefono: ${booking.phone}\n`;
+    msg += `Servicio: ${booking.serviceText || booking.service}\n`;
+    msg += `Fecha: ${booking.date} a las ${booking.time}\n`;
+    msg += `Recogida: ${booking.pickup || 'No indicado'}\n`;
+    msg += `Pasajeros: ${booking.passengers || '—'}\n`;
+    msg += `Precio: ${finalPrice}EUR${booking.isCompany ? ' (empresa -15%)' : ''}\n`;
+    msg += `\n*Gestionar:* ${ADMIN_URL}`;
 
     return `https://wa.me/${OWNER_PHONE}?text=${encodeURIComponent(msg)}`;
 }
@@ -438,17 +438,17 @@ async function confirmBooking() {
     `;
 
     // WhatsApp link for client to contact
-    let msg = `🚖 *RESERVA CONFIRMADA*\n\n`;
-    msg += `👤 *Nombre:* ${nombre}\n`;
-    msg += `📞 *Teléfono:* ${telefono}\n`;
-    msg += `🚗 *Servicio:* ${servicioText}\n`;
-    msg += `📅 *Fecha:* ${formatDateDisplay(selectedDate)}\n`;
-    msg += `🕐 *Hora:* ${selectedSlot}\n`;
-    msg += `👥 *Pasajeros:* ${pasajeros}\n`;
-    if (recogida) msg += `📍 *Recogida:* ${recogida}\n`;
-    if (esEmpresa) msg += `\n🏢 *Cliente Empresa* — Dto. 15% → ${finalPrice}€\n`;
-    msg += `\n💰 *Total:* ${esEmpresa ? finalPrice : price}€`;
-    msg += `\n\n_Reserva automática desde sevillafreenowtaxi.com_`;
+    let msg = `*RESERVA CONFIRMADA*\n\n`;
+    msg += `*Nombre:* ${nombre}\n`;
+    msg += `*Telefono:* ${telefono}\n`;
+    msg += `*Servicio:* ${servicioText}\n`;
+    msg += `*Fecha:* ${formatDateDisplay(selectedDate)}\n`;
+    msg += `*Hora:* ${selectedSlot}\n`;
+    msg += `*Pasajeros:* ${pasajeros}\n`;
+    if (recogida) msg += `*Recogida:* ${recogida}\n`;
+    if (esEmpresa) msg += `\n*Cliente Empresa* — Dto. 15% -> ${finalPrice}EUR\n`;
+    msg += `\n*Total:* ${esEmpresa ? finalPrice : price}EUR`;
+    msg += `\n\n_Reserva automatica desde sevillafreenowtaxi.com_`;
 
     document.getElementById('confirmWhatsApp').href = `https://wa.me/34685579928?text=${encodeURIComponent(msg)}`;
 
