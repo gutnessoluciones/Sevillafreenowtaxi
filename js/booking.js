@@ -362,7 +362,7 @@ function shakeField(id) {
 }
 
 // ============ RECAPTCHA v3 ============
-const RECAPTCHA_SITE_KEY = 'RECAPTCHA_SITE_KEY_PLACEHOLDER'; // TODO: Replace with real key
+const RECAPTCHA_SITE_KEY = '6Le_MXAsAAAAAOXb-hNVGdr4H7BcNVUPsWH3Y_9K';
 
 async function verifyRecaptcha() {
     if (RECAPTCHA_SITE_KEY === 'RECAPTCHA_SITE_KEY_PLACEHOLDER' || typeof grecaptcha === 'undefined') {
