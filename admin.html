@@ -159,13 +159,14 @@
         </section>
 
         <!-- NEXT BOOKING ALERT -->
-        <div class="next-booking-banner" id="nextBookingBanner" style="display:none">
+        <div class="next-booking-banner" id="nextBookingBanner" style="display:none" onclick="this.classList.add('hiding'); setTimeout(() => { this.style.display='none'; this.classList.remove('hiding'); }, 300)">
             <div class="next-booking-content">
                 <i class="fas fa-bell"></i>
                 <div>
                     <strong>Próxima reserva:</strong>
                     <span id="nextBookingInfo"></span>
                 </div>
+                <span class="banner-close"><i class="fas fa-times"></i></span>
             </div>
         </div>
     </div>

@@ -605,6 +605,9 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 200;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .next-booking-content {
@@ -619,11 +622,34 @@ body {
     font-weight: 500;
     box-shadow: 0 8px 32px rgba(212, 168, 36, 0.4);
     animation: bannerFloat 3s ease-in-out infinite;
+    position: relative;
 }
 
-.next-booking-content i {
+.next-booking-content .banner-close {
+    margin-left: 8px;
+    opacity: 0.5;
+    font-size: 0.75rem;
+    transition: opacity 0.2s;
+}
+
+.next-booking-banner:hover .banner-close {
+    opacity: 1;
+}
+
+.next-booking-content i.fa-bell {
     font-size: 1.1rem;
     animation: bellSwing 2s ease-in-out infinite;
+}
+
+.next-booking-banner.hiding {
+    animation: bannerSlideOut 0.3s ease forwards;
+}
+
+@keyframes bannerSlideOut {
+    to {
+        transform: translateX(-50%) translateY(100px);
+        opacity: 0;
+    }
 }
 
 @keyframes bannerFloat {
@@ -685,6 +711,105 @@ body {
     .bookings-table tbody td {
         padding: 10px 12px;
         font-size: 0.82rem;
+    }
+
+    /* Card layout for mobile */
+    .table-wrapper {
+        overflow-x: visible;
+    }
+
+    .bookings-table thead {
+        display: none;
+    }
+
+    .bookings-table tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 14px 14px 10px;
+        margin-bottom: 8px;
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: var(--radius-sm);
+        gap: 4px 12px;
+        align-items: center;
+        position: relative;
+    }
+
+    .bookings-table tbody tr:hover {
+        background: var(--admin-surface);
+    }
+
+    .bookings-table tbody td {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 0;
+        border-bottom: none;
+        white-space: normal;
+        font-size: 0.82rem;
+    }
+
+    /* Status: full width top */
+    .bookings-table tbody td:nth-child(1) {
+        order: 1;
+    }
+
+    /* Date */
+    .bookings-table tbody td:nth-child(2) {
+        order: 2;
+        font-weight: 600;
+    }
+
+    .bookings-table tbody td:nth-child(2) .booking-date {
+        flex-direction: row;
+        gap: 6px;
+    }
+
+    /* Time */
+    .bookings-table tbody td:nth-child(3) {
+        order: 3;
+    }
+
+    /* Client name */
+    .bookings-table tbody td:nth-child(4) {
+        order: 4;
+        width: 100%;
+        font-size: 0.95rem;
+    }
+
+    /* Phone */
+    .bookings-table tbody td:nth-child(5) {
+        order: 5;
+    }
+
+    /* Service */
+    .bookings-table tbody td:nth-child(6) {
+        order: 6;
+    }
+
+    /* Timestamp - hide on mobile */
+    .bookings-table tbody td:nth-child(7) {
+        display: none;
+    }
+
+    /* Actions: full width bottom */
+    .bookings-table tbody td:nth-child(8) {
+        order: 8;
+        width: 100%;
+        padding-top: 8px;
+        margin-top: 4px;
+        border-top: 1px solid var(--admin-border);
+    }
+
+    .bookings-table tbody td:nth-child(8) .action-btns {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .bookings-table tbody td:nth-child(8) .action-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
     }
 
     .admin-live-badge {
