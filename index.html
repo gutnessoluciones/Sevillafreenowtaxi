@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicio de taxi premium en Sevilla. Traslados, rutas panorámicas, aeropuerto, paquetería y visitas guiadas. Reserva ahora.">
+    <meta name="keywords" content="taxi Sevilla, taxi aeropuerto Sevilla, taxi turístico Sevilla, traslados Sevilla">
+    <title>Sevilla FreeNow Taxi | Servicio Premium de Taxi en Sevilla</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <img src="img/logo.png" alt="Sevilla FreeNow Taxi" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <span class="logo-text" style="display:none;">
+                    <span class="logo-icon"><i class="fas fa-taxi"></i></span>
+                    Sevilla<span class="logo-highlight">Taxi</span>
+                </span>
+            </a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#tarifas" class="nav-link">Tarifas</a></li>
+                <li><a href="#rutas" class="nav-link">Rutas</a></li>
+                <li><a href="#guias" class="nav-link">Visitas Guiadas</a></li>
+                <li><a href="#empresas" class="nav-link">Empresas</a></li>
+                <li><a href="#reservar" class="nav-link nav-cta">Reservar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero" id="inicio">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="container hero-content">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
+                <i class="fas fa-star"></i> Servicio Premium en Sevilla
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="200">
+                Tu Taxi de Confianza<br>
+                <span class="hero-gradient-text">en Sevilla</span>
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+                Traslados, rutas turísticas, aeropuerto y mucho más.<br>
+                Experiencia premium al mejor precio.
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                <a href="#reservar" class="btn btn-primary btn-glow">
+                    <i class="fas fa-calendar-check"></i> Reservar Ahora
+                </a>
+                <a href="https://wa.me/34664625403?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20un%20servicio%20de%20taxi" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="800">
+                <div class="stat">
+                    <span class="stat-number" data-count="1500">0</span>+
+                    <span class="stat-label">Clientes satisfechos</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="15">0</span>€
+                    <span class="stat-label">Desde solo</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label">Idiomas disponibles</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#servicios"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </header>
+
+    <!-- ===================== SERVICIOS ===================== -->
+    <section class="section services" id="servicios">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Lo que ofrecemos</span>
+                <h2>Nuestros <span class="text-gradient">Servicios</span></h2>
+                <p class="section-desc">Soluciones de transporte completas para cada necesidad en Sevilla y alrededores.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Servicio 1 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Servicios Urbanos</h3>
+                    <p>Desplázate por toda Sevilla con la máxima comodidad. Recogida en cualquier punto de la ciudad.</p>
+                    <div class="service-price">Desde <strong>15€</strong></div>
+                </div>
+                <!-- Servicio 2 -->
+                <div class="service-card featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-badge">Popular</div>
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Ruta Panorámica</h3>
+                    <p>Descubre Sevilla en un tour de 2 horas por los lugares más emblemáticos con guía incluido.</p>
+                    <div class="service-price"><strong>47€</strong> <span>/ 2 horas</span></div>
+                </div>
+                <!-- Servicio 3 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-train"></i>
+                    </div>
+                    <h3>Estación de Tren</h3>
+                    <p>Traslados puntuales a Santa Justa. Nunca pierdas tu tren con nuestro servicio fiable.</p>
+                    <div class="service-price">Desde <strong>20€</strong></div>
+                </div>
+                <!-- Servicio 4 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <h3>Aeropuerto</h3>
+                    <p>Servicio de traslado al aeropuerto de Sevilla San Pablo. Puntualidad garantizada.</p>
+                    <div class="service-price">Desde <strong>29€</strong></div>
+                </div>
+                <!-- Servicio 5 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3>Paquetería</h3>
+                    <p>Envío y recogida de paquetes por toda Sevilla y alrededores. Rápido y seguro.</p>
+                    <div class="service-price">Desde <strong>20€</strong></div>
+                </div>
+                <!-- Servicio 6 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <h3>Hora de Espera</h3>
+                    <p>¿Necesitas que te esperemos? Disponemos de tarifa por hora para tu comodidad.</p>
+                    <div class="service-price"><strong>20€</strong> <span>/ hora</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TARIFAS INTERURBANAS ===================== -->
+    <section class="section routes-section" id="rutas">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Destinos</span>
+                <h2>Rutas <span class="text-gradient">Interurbanas</span></h2>
+                <p class="section-desc">Viaja cómodamente a cualquier destino en Andalucía con precios cerrados y sin sorpresas.</p>
+            </div>
+            <div class="routes-grid">
+                <div class="route-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="route-from">Sevilla</div>
+                    <div class="route-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="route-to">Huelva</div>
+                    <div class="route-price">135€</div>
+                </div>
+                <div class="route-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="route-from">Sevilla</div>
+                    <div class="route-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="route-to">Aracena</div>
+                    <div class="route-price">115€</div>
+                </div>
+                <div class="route-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="route-from">Sevilla</div>
+                    <div class="route-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="route-to">Jerez</div>
+                    <div class="route-price">130€</div>
+                </div>
+                <div class="route-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="route-from">Sevilla</div>
+                    <div class="route-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="route-to">Cádiz</div>
+                    <div class="route-price">180€</div>
+                </div>
+                <div class="route-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="route-from">Sevilla</div>
+                    <div class="route-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="route-to">Córdoba</div>
+                    <div class="route-price">170€</div>
+                </div>
+                <div class="route-card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="route-from">Sevilla</div>
+                    <div class="route-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="route-to">Aerop. Málaga</div>
+                    <div class="route-price">280€</div>
+                </div>
+            </div>
+            <div class="routes-note" data-aos="fade-up">
+                <i class="fas fa-info-circle"></i>
+                ¿Tu destino no está en la lista? <a href="https://wa.me/34664625403?text=Hola%2C%20necesito%20un%20presupuesto%20para%20una%20ruta%20personalizada">Consúltanos sin compromiso</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== VISITAS GUIADAS ===================== -->
+    <section class="section guides-section" id="guias">
+        <div class="container">
+            <div class="guides-wrapper">
+                <div class="guides-image" data-aos="fade-right">
+                    <img src="img/guia-turistica.jpg" alt="Visitas guiadas por Sevilla" onerror="this.src='https://images.unsplash.com/photo-1559386484-97dfc0e15539?w=600&q=80'">
+                    <div class="guides-float-card">
+                        <div class="guides-float-icon"><i class="fas fa-globe"></i></div>
+                        <div>
+                            <strong>Guías multilingüe</strong>
+                            <span>Inglés · Italiano · Portugués</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="guides-content" data-aos="fade-left">
+                    <span class="section-tag">Experiencia única</span>
+                    <h2>Visitas <span class="text-gradient">Guiadas</span></h2>
+                    <p>Descubre la magia de Sevilla con nuestros guías turísticos profesionales. Ofrecemos tours personalizados en <strong>inglés, italiano y portugués</strong> para que ningún detalle se pierda.</p>
+                    <ul class="guides-features">
+                        <li><i class="fas fa-check-circle"></i> Ruta Panorámica en Taxi (2h) — 47€</li>
+                        <li><i class="fas fa-check-circle"></i> Guías profesionales certificados</li>
+                        <li><i class="fas fa-check-circle"></i> Tours personalizados a tu medida</li>
+                        <li><i class="fas fa-check-circle"></i> Colaboración con <a href="http://www.paseandoporsevilla.com/?page_id=90&lang=es" target="_blank">Paseando por Sevilla</a></li>
+                    </ul>
+                    <a href="https://wa.me/34664625403?text=Hola%2C%20me%20interesan%20las%20visitas%20guiadas" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Reservar Visita Guiada
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== EMPRESAS ===================== -->
+    <section class="section business-section" id="empresas">
+        <div class="container">
+            <div class="business-wrapper" data-aos="fade-up">
+                <div class="business-content">
+                    <span class="section-tag">Para profesionales</span>
+                    <h2>Descuento <span class="text-gradient">Empresas</span></h2>
+                    <p>Si eres empresa o autónomo, disfruta de un <strong>15% de descuento</strong> en todos nuestros servicios con facturación a 30 días.</p>
+                    <div class="business-benefits">
+                        <div class="benefit">
+                            <div class="benefit-icon"><i class="fas fa-percent"></i></div>
+                            <div>
+                                <strong>15% Descuento</strong>
+                                <span>En todos los servicios</span>
+                            </div>
+                        </div>
+                        <div class="benefit">
+                            <div class="benefit-icon"><i class="fas fa-file-invoice"></i></div>
+                            <div>
+                                <strong>Facturación 30 días</strong>
+                                <span>Pago aplazado para empresas</span>
+                            </div>
+                        </div>
+                        <div class="benefit">
+                            <div class="benefit-icon"><i class="fas fa-qrcode"></i></div>
+                            <div>
+                                <strong>Código QR exclusivo</strong>
+                                <span>Acceso directo para empleados</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/34664625403?text=Hola%2C%20me%20interesa%20el%20servicio%20para%20empresas" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-building"></i> Solicitar Info Empresas
+                    </a>
+                </div>
+                <div class="business-card-visual">
+                    <div class="discount-card">
+                        <div class="discount-card-top">
+                            <i class="fas fa-taxi"></i>
+                            <span>SEVILLA TAXI</span>
+                        </div>
+                        <div class="discount-card-body">
+                            <div class="discount-big">-15%</div>
+                            <div class="discount-label">Descuento Empresas</div>
+                        </div>
+                        <div class="discount-card-bottom">
+                            <span>Facturación 30 días</span>
+                            <span>Código: EMPRESA15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TARIFAS RESUMEN ===================== -->
+    <section class="section pricing-section" id="tarifas">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Transparencia total</span>
+                <h2>Tabla de <span class="text-gradient">Tarifas</span></h2>
+                <p class="section-desc">Precios cerrados, sin sorpresas. Lo que ves es lo que pagas.</p>
+            </div>
+            <div class="pricing-table-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Precio</th>
+                            <th>Precio Empresa (-15%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-city"></i> Servicios Urbanos</td>
+                            <td>Desde 15€</td>
+                            <td>Desde 12,75€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-camera"></i> Ruta Panorámica (2h)</td>
+                            <td>47€</td>
+                            <td>39,95€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-train"></i> Estación de Tren</td>
+                            <td>Desde 20€</td>
+                            <td>Desde 17€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-plane-departure"></i> Aeropuerto Sevilla</td>
+                            <td>29€</td>
+                            <td>24,65€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-box"></i> Paquetería</td>
+                            <td>Desde 20€</td>
+                            <td>Desde 17€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-hourglass-half"></i> Hora de Espera</td>
+                            <td>20€/h</td>
+                            <td>17€/h</td>
+                        </tr>
+                        <tr class="pricing-divider"><td colspan="3">Rutas Interurbanas</td></tr>
+                        <tr>
+                            <td><i class="fas fa-route"></i> Sevilla → Huelva</td>
+                            <td>135€</td>
+                            <td>114,75€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-route"></i> Sevilla → Aracena</td>
+                            <td>115€</td>
+                            <td>97,75€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-route"></i> Sevilla → Jerez</td>
+                            <td>130€</td>
+                            <td>110,50€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-route"></i> Sevilla → Cádiz</td>
+                            <td>180€</td>
+                            <td>153€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-route"></i> Sevilla → Córdoba</td>
+                            <td>170€</td>
+                            <td>144,50€</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-route"></i> Sevilla → Aerop. Málaga</td>
+                            <td>280€</td>
+                            <td>238€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== RESERVAR ===================== -->
+    <section class="section booking-section" id="reservar">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Rápido y sencillo</span>
+                <h2>Reserva tu <span class="text-gradient">Servicio</span></h2>
+                <p class="section-desc">Selecciona fecha, hora y servicio. Te confirmamos al instante.</p>
+            </div>
+            <div class="booking-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre"><i class="fas fa-user"></i> Nombre</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="servicio"><i class="fas fa-concierge-bell"></i> Servicio</label>
+                            <select id="servicio" name="servicio" required>
+                                <option value="">Selecciona un servicio</option>
+                                <option value="urbano">Servicio Urbano (desde 15€)</option>
+                                <option value="panoramica">Ruta Panorámica 2h (47€)</option>
+                                <option value="tren">Estación de Tren (desde 20€)</option>
+                                <option value="aeropuerto">Aeropuerto Sevilla (29€)</option>
+                                <option value="paqueteria">Paquetería (desde 20€)</option>
+                                <option value="huelva">Sevilla → Huelva (135€)</option>
+                                <option value="aracena">Sevilla → Aracena (115€)</option>
+                                <option value="jerez">Sevilla → Jerez (130€)</option>
+                                <option value="cadiz">Sevilla → Cádiz (180€)</option>
+                                <option value="cordoba">Sevilla → Córdoba (170€)</option>
+                                <option value="malaga">Sevilla → Aerop. Málaga (280€)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha"><i class="fas fa-calendar"></i> Fecha</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hora"><i class="fas fa-clock"></i> Hora</label>
+                            <input type="time" id="hora" name="hora" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pasajeros"><i class="fas fa-users"></i> Pasajeros</label>
+                            <select id="pasajeros" name="pasajeros">
+                                <option value="1">1 pasajero</option>
+                                <option value="2">2 pasajeros</option>
+                                <option value="3">3 pasajeros</option>
+                                <option value="4">4 pasajeros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="recogida"><i class="fas fa-map-marker-alt"></i> Dirección de recogida</label>
+                        <input type="text" id="recogida" name="recogida" placeholder="Ej: Hotel Alfonso XIII, Calle San Fernando 2">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="notas"><i class="fas fa-comment"></i> Notas adicionales</label>
+                        <textarea id="notas" name="notas" rows="3" placeholder="Cualquier información adicional..."></textarea>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="empresa" name="empresa">
+                        <label for="empresa">Soy empresa (descuento 15% + factura)</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full btn-glow">
+                        <i class="fab fa-whatsapp"></i> Enviar Reserva por WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><i class="fas fa-taxi"></i> Sevilla FreeNow Taxi</h3>
+                    <p>Tu servicio de taxi premium en Sevilla. Comodidad, puntualidad y profesionalidad en cada viaje.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/sevillafreenowtaxi/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/34664625403" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#servicios">Servicios Urbanos</a></li>
+                        <li><a href="#servicios">Ruta Panorámica</a></li>
+                        <li><a href="#servicios">Aeropuerto</a></li>
+                        <li><a href="#servicios">Paquetería</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Rutas</h4>
+                    <ul>
+                        <li><a href="#rutas">Sevilla → Huelva</a></li>
+                        <li><a href="#rutas">Sevilla → Jerez</a></li>
+                        <li><a href="#rutas">Sevilla → Cádiz</a></li>
+                        <li><a href="#rutas">Sevilla → Córdoba</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+34664625403">+34 664 625 403</a></li>
+                        <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/sevillafreenowtaxi/" target="_blank">@sevillafreenowtaxi</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Sevilla, España</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sevilla FreeNow Taxi. Todos los derechos reservados.</p>
+                <p>Desarrollado con <i class="fas fa-heart" style="color: var(--primary)"></i> por <a href="https://gutnessoluciones.com" target="_blank">Gutnes Soluciones</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/34664625403?text=Hola%2C%20necesito%20un%20taxi%20en%20Sevilla" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
