@@ -83,7 +83,7 @@ async function saveBooking(booking) {
 }
 
 // ============ WHATSAPP NOTIFICACIÓN AL DUEÑO ============
-const OWNER_PHONE = "34664625403";
+const OWNER_PHONE = "34685579928";
 const ADMIN_URL = "https://admin.sevillafreenowtaxi.com";
 
 function buildOwnerWhatsAppUrl(booking) {
@@ -423,7 +423,7 @@ async function confirmBooking() {
     msg += `\n💰 *Total:* ${esEmpresa ? finalPrice : price}€`;
     msg += `\n\n_Reserva automática desde sevillafreenowtaxi.com_`;
 
-    document.getElementById('confirmWhatsApp').href = `https://wa.me/34664625403?text=${encodeURIComponent(msg)}`;
+    document.getElementById('confirmWhatsApp').href = `https://wa.me/34685579928?text=${encodeURIComponent(msg)}`;
 
     // Auto-open WhatsApp to notify the owner (opens in new tab, user sends)
     window.open(ownerWaUrl, '_blank');
