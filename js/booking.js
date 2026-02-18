@@ -301,8 +301,11 @@ async function onDateSelect(dateStr) {
         el.addEventListener('click', () => onSlotSelect(el));
     });
 
-    // Smooth scroll to time slots
-    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Smooth scroll to keep booking in view on mobile
+    const bookingSection = document.getElementById('booking') || document.getElementById('reservar');
+    if (bookingSection) {
+        setTimeout(() => bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
 }
 
 function onSlotSelect(el) {
@@ -340,7 +343,17 @@ function getSelectedPrice() {
 // ============ STEP NAVIGATION ============
 function showStep(stepNum) {
     document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
-    document.getElementById(`step${stepNum}`)?.classList.add('active');
+    const step = document.getElementById(`step${stepNum}`);
+    if (step) {
+        step.classList.add('active');
+        // Keep booking section in view on mobile
+        setTimeout(() => {
+            const bookingSection = document.getElementById('booking') || document.getElementById('reservar');
+            if (bookingSection) {
+                bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
+    }
 }
 
 function validateStep1() {
