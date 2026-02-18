@@ -7,6 +7,15 @@
     <meta name="keywords" content="taxi Sevilla, taxi aeropuerto Sevilla, taxi turístico Sevilla, traslados Sevilla">
     <title>Sevilla FreeNow Taxi | Servicio Premium de Taxi en Sevilla</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="msapplication-TileImage" content="img/icon-192.png">
+    <meta name="msapplication-TileColor" content="#0A0A0A">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,42 +59,67 @@
 
     <!-- ===================== HERO ===================== -->
     <header class="hero" id="inicio">
-        <div class="hero-overlay"></div>
-        <div class="hero-particles" id="particles"></div>
-        <div class="container hero-content">
-            <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
-                <i class="fas fa-star"></i> Servicio Premium en Sevilla
-            </div>
-            <h1 data-aos="fade-up" data-aos-delay="200">
-                Tu Taxi de Confianza<br>
-                <span class="hero-gradient-text">en Sevilla</span>
-            </h1>
-            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
-                Traslados, rutas turísticas, aeropuerto y mucho más.<br>
-                Experiencia premium al mejor precio.
-            </p>
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                <a href="#reservar" class="btn btn-primary btn-glow">
-                    <i class="fas fa-calendar-check"></i> Reservar Ahora
-                </a>
-                <a href="https://wa.me/34664625403?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20un%20servicio%20de%20taxi" class="btn btn-outline" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-            </div>
-            <div class="hero-stats" data-aos="fade-up" data-aos-delay="800">
-                <div class="stat">
-                    <span class="stat-number" data-count="1500">0</span>+
-                    <span class="stat-label">Clientes satisfechos</span>
+        <div class="hero-split">
+            <!-- Lado izquierdo: contenido -->
+            <div class="hero-left">
+                <div class="hero-left-inner">
+                    <img src="img/logo-full.png" alt="SevillaFreeNowTaxi Logo" class="hero-logo" data-aos="zoom-in" data-aos-delay="50">
+                    <div class="hero-badge" data-aos="fade-right" data-aos-delay="100">
+                        <span class="badge-dot"></span> Sevilla · Servicio Premium 24h
+                    </div>
+                    <h1 data-aos="fade-right" data-aos-delay="200">
+                        Llega donde<br>quieras con<br>
+                        <span class="hero-typed-wrapper">
+                            <span class="hero-typed" id="heroTyped">estilo</span>
+                            <span class="typed-cursor">|</span>
+                        </span>
+                    </h1>
+                    <p class="hero-subtitle" data-aos="fade-right" data-aos-delay="400">
+                        Taxi premium en Sevilla. Aeropuerto, rutas turísticas, traslados interurbanos y paquetería. Siempre puntuales.
+                    </p>
+                    <div class="hero-buttons" data-aos="fade-right" data-aos-delay="600">
+                        <a href="#reservar" class="btn btn-primary btn-glow">
+                            <i class="fas fa-calendar-check"></i> Reservar Viaje
+                        </a>
+                        <a href="https://wa.me/34664625403?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20un%20servicio%20de%20taxi" class="btn btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Directo
+                        </a>
+                    </div>
+                    <div class="hero-trust" data-aos="fade-right" data-aos-delay="800">
+                        <div class="trust-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Precio cerrado</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-star"></i>
+                            <span>Guías EN · IT · PT</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-building"></i>
+                            <span>-15% Empresas</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number" data-count="15">0</span>€
-                    <span class="stat-label">Desde solo</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number" data-count="3">0</span>
-                    <span class="stat-label">Idiomas disponibles</span>
+            </div>
+            <!-- Lado derecho: foto -->
+            <div class="hero-right" data-aos="fade-left" data-aos-delay="300">
+                <div class="hero-image-container">
+                    <img src="img/hero-bg.jpg" alt="Taxi premium en Sevilla" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=800&q=80'">
+                    <div class="hero-image-overlay"></div>
+                    <!-- Tarjeta flotante sobre la imagen -->
+                    <div class="hero-float-price">
+                        <div class="float-price-icon"><i class="fas fa-taxi"></i></div>
+                        <div>
+                            <span class="float-price-label">Desde solo</span>
+                            <span class="float-price-amount">15€</span>
+                        </div>
+                    </div>
+                    <div class="hero-float-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <span>+1.500 clientes</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -391,53 +425,55 @@
     <section class="section booking-section" id="reservar">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Rápido y sencillo</span>
+                <span class="section-tag">Sistema de citas</span>
                 <h2>Reserva tu <span class="text-gradient">Servicio</span></h2>
-                <p class="section-desc">Selecciona fecha, hora y servicio. Te confirmamos al instante.</p>
+                <p class="section-desc">Elige fecha y hora disponible. El sistema bloquea automáticamente las franjas ocupadas.</p>
             </div>
-            <div class="booking-wrapper" data-aos="fade-up" data-aos-delay="200">
-                <form class="booking-form" id="bookingForm">
+
+            <div class="booking-app" data-aos="fade-up" data-aos-delay="200">
+                <!-- Paso 1: Datos personales -->
+                <div class="booking-step active" id="step1">
+                    <div class="step-header">
+                        <div class="step-number active">1</div>
+                        <div class="step-number">2</div>
+                        <div class="step-number">3</div>
+                    </div>
+                    <h3 class="step-title"><i class="fas fa-user"></i> Tus datos</h3>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="nombre"><i class="fas fa-user"></i> Nombre</label>
-                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                            <label for="bk-nombre"><i class="fas fa-user"></i> Nombre</label>
+                            <input type="text" id="bk-nombre" required placeholder="Tu nombre completo">
                         </div>
                         <div class="form-group">
-                            <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000">
+                            <label for="bk-telefono"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input type="tel" id="bk-telefono" required placeholder="+34 600 000 000">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="servicio"><i class="fas fa-concierge-bell"></i> Servicio</label>
-                            <select id="servicio" name="servicio" required>
+                            <label for="bk-servicio"><i class="fas fa-concierge-bell"></i> Servicio</label>
+                            <select id="bk-servicio" required>
                                 <option value="">Selecciona un servicio</option>
-                                <option value="urbano">Servicio Urbano (desde 15€)</option>
-                                <option value="panoramica">Ruta Panorámica 2h (47€)</option>
-                                <option value="tren">Estación de Tren (desde 20€)</option>
-                                <option value="aeropuerto">Aeropuerto Sevilla (29€)</option>
-                                <option value="paqueteria">Paquetería (desde 20€)</option>
-                                <option value="huelva">Sevilla → Huelva (135€)</option>
-                                <option value="aracena">Sevilla → Aracena (115€)</option>
-                                <option value="jerez">Sevilla → Jerez (130€)</option>
-                                <option value="cadiz">Sevilla → Cádiz (180€)</option>
-                                <option value="cordoba">Sevilla → Córdoba (170€)</option>
-                                <option value="malaga">Sevilla → Aerop. Málaga (280€)</option>
+                                <optgroup label="Servicios urbanos">
+                                    <option value="urbano" data-duration="1" data-price="15">Servicio Urbano — desde 15€</option>
+                                    <option value="panoramica" data-duration="4" data-price="47">Ruta Panorámica 2h — 47€</option>
+                                    <option value="tren" data-duration="1" data-price="20">Estación de Tren — desde 20€</option>
+                                    <option value="aeropuerto" data-duration="2" data-price="29">Aeropuerto Sevilla — 29€</option>
+                                    <option value="paqueteria" data-duration="1" data-price="20">Paquetería — desde 20€</option>
+                                </optgroup>
+                                <optgroup label="Rutas interurbanas">
+                                    <option value="huelva" data-duration="4" data-price="135">Sevilla → Huelva — 135€</option>
+                                    <option value="aracena" data-duration="4" data-price="115">Sevilla → Aracena — 115€</option>
+                                    <option value="jerez" data-duration="3" data-price="130">Sevilla → Jerez — 130€</option>
+                                    <option value="cadiz" data-duration="5" data-price="180">Sevilla → Cádiz — 180€</option>
+                                    <option value="cordoba" data-duration="5" data-price="170">Sevilla → Córdoba — 170€</option>
+                                    <option value="malaga" data-duration="6" data-price="280">Sevilla → Aerop. Málaga — 280€</option>
+                                </optgroup>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="fecha"><i class="fas fa-calendar"></i> Fecha</label>
-                            <input type="date" id="fecha" name="fecha" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="hora"><i class="fas fa-clock"></i> Hora</label>
-                            <input type="time" id="hora" name="hora" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="pasajeros"><i class="fas fa-users"></i> Pasajeros</label>
-                            <select id="pasajeros" name="pasajeros">
+                            <label for="bk-pasajeros"><i class="fas fa-users"></i> Pasajeros</label>
+                            <select id="bk-pasajeros">
                                 <option value="1">1 pasajero</option>
                                 <option value="2">2 pasajeros</option>
                                 <option value="3">3 pasajeros</option>
@@ -446,21 +482,88 @@
                         </div>
                     </div>
                     <div class="form-group full-width">
-                        <label for="recogida"><i class="fas fa-map-marker-alt"></i> Dirección de recogida</label>
-                        <input type="text" id="recogida" name="recogida" placeholder="Ej: Hotel Alfonso XIII, Calle San Fernando 2">
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="notas"><i class="fas fa-comment"></i> Notas adicionales</label>
-                        <textarea id="notas" name="notas" rows="3" placeholder="Cualquier información adicional..."></textarea>
+                        <label for="bk-recogida"><i class="fas fa-map-marker-alt"></i> Dirección de recogida</label>
+                        <input type="text" id="bk-recogida" placeholder="Ej: Hotel Alfonso XIII, Calle San Fernando 2">
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" id="empresa" name="empresa">
-                        <label for="empresa">Soy empresa (descuento 15% + factura)</label>
+                        <input type="checkbox" id="bk-empresa">
+                        <label for="bk-empresa">Soy empresa (descuento 15% + factura)</label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full btn-glow">
-                        <i class="fab fa-whatsapp"></i> Enviar Reserva por WhatsApp
+                    <button class="btn btn-primary btn-full" id="toStep2">
+                        Elegir Fecha y Hora <i class="fas fa-arrow-right"></i>
                     </button>
-                </form>
+                </div>
+
+                <!-- Paso 2: Calendario + Hora -->
+                <div class="booking-step" id="step2">
+                    <div class="step-header">
+                        <div class="step-number completed"><i class="fas fa-check"></i></div>
+                        <div class="step-number active">2</div>
+                        <div class="step-number">3</div>
+                    </div>
+                    <h3 class="step-title"><i class="fas fa-calendar-alt"></i> Elige fecha y hora</h3>
+                    
+                    <!-- Calendario -->
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="cal-nav" id="calPrev"><i class="fas fa-chevron-left"></i></button>
+                            <h4 class="cal-month-year" id="calMonthYear"></h4>
+                            <button class="cal-nav" id="calNext"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                        </div>
+                        <div class="calendar-days" id="calDays"></div>
+                    </div>
+
+                    <!-- Time Slots -->
+                    <div class="timeslots-container" id="timeslotsContainer" style="display:none;">
+                        <h4 class="timeslots-title">
+                            <i class="fas fa-clock"></i> 
+                            Horarios para el <span id="selectedDateText"></span>
+                        </h4>
+                        <div class="timeslots-info">
+                            <span class="slot-legend available"></span> Disponible
+                            <span class="slot-legend booked"></span> Ocupado
+                            <span class="slot-legend selected"></span> Seleccionado
+                        </div>
+                        <div class="timeslots-grid" id="timeslotsGrid"></div>
+                    </div>
+
+                    <div class="step-buttons">
+                        <button class="btn btn-outline" id="backToStep1">
+                            <i class="fas fa-arrow-left"></i> Volver
+                        </button>
+                        <button class="btn btn-primary" id="toStep3" disabled>
+                            Confirmar Reserva <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Confirmación -->
+                <div class="booking-step" id="step3">
+                    <div class="step-header">
+                        <div class="step-number completed"><i class="fas fa-check"></i></div>
+                        <div class="step-number completed"><i class="fas fa-check"></i></div>
+                        <div class="step-number active">3</div>
+                    </div>
+                    <div class="confirmation-card">
+                        <div class="confirm-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>¡Reserva Confirmada!</h3>
+                        <p class="confirm-subtitle">Tu cita ha sido registrada correctamente</p>
+                        <div class="confirm-details" id="confirmDetails"></div>
+                        <div class="confirm-buttons">
+                            <a href="#" class="btn btn-primary" id="confirmWhatsApp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
+                            </a>
+                            <button class="btn btn-outline" id="newBooking">
+                                <i class="fas fa-plus"></i> Nueva Reserva
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -470,7 +573,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3><i class="fas fa-taxi"></i> Sevilla FreeNow Taxi</h3>
+                    <img src="img/logo-full.png" alt="SevillaFreeNowTaxi" class="footer-logo">
                     <p>Tu servicio de taxi premium en Sevilla. Comodidad, puntualidad y profesionalidad en cada viaje.</p>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/sevillafreenowtaxi/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -523,6 +626,8 @@
 
     <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Firebase SDK -->
+    <script type="module" src="js/booking.js"></script>
     <!-- JS -->
     <script src="js/main.js"></script>
 </body>
