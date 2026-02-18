@@ -52,6 +52,7 @@
                 <li><a href="#rutas" class="nav-link">Rutas</a></li>
                 <li><a href="#guias" class="nav-link">Visitas Guiadas</a></li>
                 <li><a href="#empresas" class="nav-link">Empresas</a></li>
+                <li><a href="#valoraciones" class="nav-link">Opiniones</a></li>
                 <li><a href="#reservar" class="nav-link nav-cta">Reservar</a></li>
             </ul>
         </div>
@@ -114,11 +115,11 @@
                             <span class="float-price-amount">15€</span>
                         </div>
                     </div>
-                    <div class="hero-float-rating">
+                    <div class="hero-float-rating" id="heroRatingWidget">
                         <div class="stars">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <span>+1.500 clientes</span>
+                        <span id="heroRatingText">Cargando...</span>
                     </div>
                 </div>
             </div>
@@ -568,6 +569,78 @@
         </div>
     </section>
 
+    <!-- ===================== VALORACIONES ===================== -->
+    <section class="section reviews-section" id="valoraciones">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Opiniones reales</span>
+                <h2>Lo que dicen nuestros <span class="text-gradient">Clientes</span></h2>
+                <p class="section-desc">Tu opinión nos ayuda a seguir mejorando. ¡Déjanos tu valoración!</p>
+            </div>
+
+            <!-- Rating summary -->
+            <div class="reviews-summary" data-aos="fade-up" data-aos-delay="100">
+                <div class="reviews-avg">
+                    <span class="avg-number" id="avgRating">—</span>
+                    <div class="avg-stars" id="avgStars">
+                        <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <span class="avg-count" id="avgCount">0 valoraciones</span>
+                </div>
+                <div class="reviews-bars" id="ratingBars">
+                    <div class="bar-row"><span>5 <i class="fas fa-star"></i></span><div class="bar-track"><div class="bar-fill" data-star="5"></div></div><span class="bar-count" data-star="5">0</span></div>
+                    <div class="bar-row"><span>4 <i class="fas fa-star"></i></span><div class="bar-track"><div class="bar-fill" data-star="4"></div></div><span class="bar-count" data-star="4">0</span></div>
+                    <div class="bar-row"><span>3 <i class="fas fa-star"></i></span><div class="bar-track"><div class="bar-fill" data-star="3"></div></div><span class="bar-count" data-star="3">0</span></div>
+                    <div class="bar-row"><span>2 <i class="fas fa-star"></i></span><div class="bar-track"><div class="bar-fill" data-star="2"></div></div><span class="bar-count" data-star="2">0</span></div>
+                    <div class="bar-row"><span>1 <i class="fas fa-star"></i></span><div class="bar-track"><div class="bar-fill" data-star="1"></div></div><span class="bar-count" data-star="1">0</span></div>
+                </div>
+            </div>
+
+            <!-- Leave a review form -->
+            <div class="review-form-card" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-pen"></i> Deja tu valoración</h3>
+                <form id="reviewForm">
+                    <div class="review-form-grid">
+                        <div class="form-field">
+                            <label for="rv-nombre">Tu nombre</label>
+                            <input type="text" id="rv-nombre" placeholder="Ej: María García" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Tu puntuación</label>
+                            <div class="star-selector" id="starSelector">
+                                <i class="far fa-star" data-value="1"></i>
+                                <i class="far fa-star" data-value="2"></i>
+                                <i class="far fa-star" data-value="3"></i>
+                                <i class="far fa-star" data-value="4"></i>
+                                <i class="far fa-star" data-value="5"></i>
+                                <span class="star-label" id="starLabel">Selecciona</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="rv-comentario">Tu comentario</label>
+                        <textarea id="rv-comentario" rows="3" placeholder="Cuéntanos tu experiencia..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitReview">
+                        <i class="fas fa-paper-plane"></i> Enviar Valoración
+                    </button>
+                </form>
+                <div class="review-success" id="reviewSuccess" style="display:none">
+                    <i class="fas fa-check-circle"></i>
+                    <p>¡Gracias por tu valoración! Tu opinión ya es visible.</p>
+                </div>
+            </div>
+
+            <!-- Reviews list -->
+            <div class="reviews-list" id="reviewsList" data-aos="fade-up" data-aos-delay="300">
+                <!-- Rendered by JS -->
+            </div>
+            <div class="reviews-loading" id="reviewsLoading">
+                <i class="fas fa-spinner fa-spin"></i> Cargando valoraciones...
+            </div>
+        </div>
+    </section>
+
     <!-- ===================== FOOTER ===================== -->
     <footer class="footer">
         <div class="container">
@@ -628,6 +701,8 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <!-- Firebase SDK -->
     <script type="module" src="js/booking.js"></script>
+    <!-- Reviews -->
+    <script type="module" src="js/reviews.js"></script>
     <!-- JS -->
     <script src="js/main.js"></script>
 </body>
