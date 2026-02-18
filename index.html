@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Servicio de taxi premium en Sevilla. Traslados, rutas panorámicas, aeropuerto, paquetería y visitas guiadas. Reserva ahora.">
-    <meta name="keywords" content="taxi Sevilla, taxi aeropuerto Sevilla, taxi turístico Sevilla, traslados Sevilla">
+    <meta name="description" content="Taxi premium en Sevilla. Traslados al aeropuerto, rutas panorámicas, visitas guiadas en inglés, italiano y portugués, paquetería y servicio para empresas con -15%. Reserva tu viaje ahora con Miguel Ángel, tu conductor de confianza. Precio cerrado sin sorpresas.">
+    <meta name="keywords" content="taxi Sevilla, taxi aeropuerto Sevilla, taxi premium Sevilla, traslados Sevilla, taxi turístico Sevilla, rutas panorámicas Sevilla, taxi FreeNow Sevilla, taxi reserva Sevilla, taxi empresas Sevilla, visitas guiadas Sevilla taxi">
+    <meta name="author" content="Sevilla FreeNow Taxi">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sevillafreenowtaxi.com/">
     <title>Sevilla FreeNow Taxi | Servicio Premium de Taxi en Sevilla</title>
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sevillafreenowtaxi.com/">
+    <meta property="og:title" content="Sevilla FreeNow Taxi — Servicio Premium de Taxi en Sevilla">
+    <meta property="og:description" content="Taxi premium en Sevilla. Aeropuerto, rutas turísticas, visitas guiadas en 4 idiomas y paquetería. Precio cerrado, puntuales y con descuento para empresas. ¡Reserva ahora!">
+    <meta property="og:image" content="https://sevillafreenowtaxi.com/img/hero-bg.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="Sevilla FreeNow Taxi">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sevilla FreeNow Taxi — Servicio Premium de Taxi en Sevilla">
+    <meta name="twitter:description" content="Taxi premium en Sevilla. Aeropuerto, rutas turísticas, visitas guiadas y paquetería. Precio cerrado. ¡Reserva ahora!">
+    <meta name="twitter:image" content="https://sevillafreenowtaxi.com/img/hero-bg.jpg">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#D4A824">
     <meta name="msapplication-TileImage" content="img/icon-192.png">
-    <meta name="msapplication-TileColor" content="#0A0A0A">
+    <meta name="msapplication-TileColor" content="#D4A824">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -705,5 +725,39 @@
     <script type="module" src="js/reviews.js"></script>
     <!-- JS -->
     <script src="js/main.js"></script>
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TaxiService",
+        "name": "Sevilla FreeNow Taxi",
+        "description": "Servicio premium de taxi en Sevilla. Traslados al aeropuerto, rutas panorámicas, visitas guiadas, paquetería y servicio para empresas.",
+        "url": "https://sevillafreenowtaxi.com",
+        "telephone": "+34664625403",
+        "image": "https://sevillafreenowtaxi.com/img/hero-bg.jpg",
+        "logo": "https://sevillafreenowtaxi.com/img/logo.png",
+        "priceRange": "€€",
+        "areaServed": {
+            "@type": "City",
+            "name": "Sevilla",
+            "sameAs": "https://es.wikipedia.org/wiki/Sevilla"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Sevilla",
+            "addressCountry": "ES"
+        },
+        "sameAs": [
+            "https://www.instagram.com/sevillafreenowtaxi/"
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+        }
+    }
+    </script>
 </body>
 </html>

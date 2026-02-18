@@ -42,16 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
-    navToggle.addEventListener('click', () => {
+    // Create overlay for mobile menu
+    const menuOverlay = document.createElement('div');
+    menuOverlay.className = 'nav-overlay';
+    document.body.appendChild(menuOverlay);
+
+    function toggleMenu() {
+        const isOpen = navMenu.classList.contains('active');
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
-    });
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    }
+
+    navToggle.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
 
     // Close menu on link click
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
 
