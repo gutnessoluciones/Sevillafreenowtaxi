@@ -2164,21 +2164,26 @@ img {
 
     .nav-menu li {
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 4px 0;
     }
 
     .nav-menu li:last-child {
         border-bottom: none;
-        margin-top: 12px;
+        margin-top: 20px;
+        padding: 0;
     }
 
     .nav-link {
         width: 100%;
-        padding: 18px 20px;
-        font-size: 1.05rem;
+        padding: 22px 20px;
+        font-size: 1.1rem;
         letter-spacing: 0.5px;
         border-radius: 12px;
         transition: all 0.25s ease;
         position: relative;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
     }
 
     .nav-link:hover,
