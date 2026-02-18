@@ -99,7 +99,7 @@ function buildOwnerWhatsAppUrl(booking) {
     msg += `Recogida: ${booking.pickup || 'No indicado'}\n`;
     msg += `Pasajeros: ${booking.passengers || '—'}\n`;
     msg += `Precio: ${finalPrice}EUR${booking.isCompany ? ' (empresa -15%)' : ''}\n`;
-    msg += `\n*Gestionar:* ${ADMIN_URL}`;
+    msg += `\n_Reserva desde sevillafreenowtaxi.com_`;
 
     return `https://wa.me/${OWNER_PHONE}?text=${encodeURIComponent(msg)}`;
 }
