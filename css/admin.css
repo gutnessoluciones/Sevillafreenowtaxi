@@ -1,0 +1,708 @@
+/* ============================================
+   ADMIN PANEL — Sevilla FreeNow Taxi
+   ============================================ */
+
+:root {
+    --admin-bg: #0f1117;
+    --admin-surface: #1a1d27;
+    --admin-surface-2: #22262f;
+    --admin-border: #2a2e3a;
+    --admin-text: #e4e6eb;
+    --admin-text-muted: #8b8fa3;
+    --admin-primary: #D4A824;
+    --admin-primary-soft: rgba(212, 168, 36, 0.12);
+    --admin-green: #22c55e;
+    --admin-green-soft: rgba(34, 197, 94, 0.12);
+    --admin-blue: #3b82f6;
+    --admin-blue-soft: rgba(59, 130, 246, 0.12);
+    --admin-red: #ef4444;
+    --admin-red-soft: rgba(239, 68, 68, 0.12);
+    --admin-orange: #f59e0b;
+    --admin-orange-soft: rgba(245, 158, 11, 0.12);
+    --admin-purple: #a855f7;
+    --admin-purple-soft: rgba(168, 85, 247, 0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--admin-bg);
+    color: var(--admin-text);
+    min-height: 100vh;
+}
+
+/* ============ LOGIN ============ */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--admin-bg);
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.login-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: contain;
+    margin-bottom: 24px;
+}
+
+.login-card h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.login-card > p {
+    color: var(--admin-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--admin-text-muted);
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 14px 14px 42px;
+    background: var(--admin-surface-2);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-sm);
+    color: var(--admin-text);
+    font-size: 1rem;
+    font-family: var(--font);
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: var(--admin-primary);
+    color: #000;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-login:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.login-error {
+    color: var(--admin-red);
+    font-size: 0.85rem;
+    margin-top: 16px;
+    min-height: 20px;
+}
+
+/* ============ HEADER ============ */
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    background: var(--admin-surface);
+    border-bottom: 1px solid var(--admin-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.admin-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.admin-header-left h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.admin-subtitle {
+    font-size: 0.8rem;
+    color: var(--admin-text-muted);
+}
+
+.admin-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-live-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--admin-green-soft);
+    color: var(--admin-green);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--admin-green);
+    border-radius: 50%;
+    animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--admin-surface-2);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-sm);
+    color: var(--admin-text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.btn-icon:hover {
+    color: var(--admin-primary);
+    border-color: var(--admin-primary);
+}
+
+.btn-icon.spinning i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============ STATS ============ */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 28px 32px;
+}
+
+.stat-card {
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--admin-primary);
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-size: 1.3rem;
+    background: var(--admin-primary-soft);
+    color: var(--admin-primary);
+}
+
+.stat-icon.tomorrow {
+    background: var(--admin-blue-soft);
+    color: var(--admin-blue);
+}
+
+.stat-icon.week {
+    background: var(--admin-purple-soft);
+    color: var(--admin-purple);
+}
+
+.stat-icon.total {
+    background: var(--admin-green-soft);
+    color: var(--admin-green);
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--admin-text-muted);
+    margin-top: 4px;
+}
+
+/* ============ FILTERS ============ */
+.filters-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 32px 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    position: relative;
+    flex: 1;
+    min-width: 160px;
+}
+
+.filter-group label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--admin-text-muted);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 12px 12px 12px 38px;
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-sm);
+    color: var(--admin-text);
+    font-size: 0.9rem;
+    font-family: var(--font);
+    transition: border-color 0.2s;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+}
+
+.filter-group select option {
+    background: var(--admin-surface);
+}
+
+.btn-clear-filters {
+    padding: 12px 18px;
+    background: var(--admin-surface-2);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-sm);
+    color: var(--admin-text-muted);
+    font-size: 0.85rem;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-clear-filters:hover {
+    color: var(--admin-red);
+    border-color: var(--admin-red);
+}
+
+/* ============ BOOKINGS TABLE ============ */
+.bookings-section {
+    padding: 0 32px 32px;
+}
+
+.bookings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.bookings-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bookings-header h2 i {
+    color: var(--admin-primary);
+}
+
+#bookingCount {
+    font-size: 0.85rem;
+    color: var(--admin-text-muted);
+    font-weight: 400;
+}
+
+.btn-export {
+    padding: 10px 18px;
+    background: var(--admin-surface-2);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-sm);
+    color: var(--admin-text);
+    font-size: 0.85rem;
+    font-family: var(--font);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-export:hover {
+    border-color: var(--admin-primary);
+    color: var(--admin-primary);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius);
+}
+
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bookings-table thead th {
+    background: var(--admin-surface-2);
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--admin-text-muted);
+    border-bottom: 1px solid var(--admin-border);
+    white-space: nowrap;
+}
+
+.bookings-table tbody tr {
+    transition: background 0.15s;
+}
+
+.bookings-table tbody tr:hover {
+    background: rgba(212, 168, 36, 0.04);
+}
+
+.bookings-table tbody td {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--admin-border);
+    white-space: nowrap;
+}
+
+.bookings-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.status-badge.pendiente {
+    background: var(--admin-orange-soft);
+    color: var(--admin-orange);
+}
+
+.status-badge.confirmada {
+    background: var(--admin-green-soft);
+    color: var(--admin-green);
+}
+
+.status-badge.completada {
+    background: var(--admin-blue-soft);
+    color: var(--admin-blue);
+}
+
+.status-badge.cancelada {
+    background: var(--admin-red-soft);
+    color: var(--admin-red);
+}
+
+.client-name {
+    font-weight: 600;
+}
+
+.client-phone a {
+    color: var(--admin-primary);
+    text-decoration: none;
+}
+
+.client-phone a:hover {
+    text-decoration: underline;
+}
+
+.service-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--admin-surface-2);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--admin-text-muted);
+}
+
+.booking-time {
+    font-weight: 600;
+    color: var(--admin-primary);
+}
+
+.booking-date {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-date .date-day {
+    font-weight: 600;
+}
+
+.booking-date .date-weekday {
+    font-size: 0.75rem;
+    color: var(--admin-text-muted);
+}
+
+/* Actions */
+.action-btns {
+    display: flex;
+    gap: 6px;
+}
+
+.action-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--admin-text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.action-btn.whatsapp:hover {
+    color: #25d366;
+    border-color: #25d366;
+    background: rgba(37, 211, 102, 0.08);
+}
+
+.action-btn.confirm:hover {
+    color: var(--admin-green);
+    border-color: var(--admin-green);
+    background: var(--admin-green-soft);
+}
+
+.action-btn.cancel:hover {
+    color: var(--admin-red);
+    border-color: var(--admin-red);
+    background: var(--admin-red-soft);
+}
+
+.action-btn.complete:hover {
+    color: var(--admin-blue);
+    border-color: var(--admin-blue);
+    background: var(--admin-blue-soft);
+}
+
+/* No bookings */
+.no-bookings {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--admin-text-muted);
+}
+
+.no-bookings i {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+.no-bookings p {
+    font-size: 1rem;
+}
+
+/* Next booking banner */
+.next-booking-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+}
+
+.next-booking-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--admin-primary);
+    color: #000;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(212, 168, 36, 0.4);
+    animation: bannerFloat 3s ease-in-out infinite;
+}
+
+.next-booking-content i {
+    font-size: 1.1rem;
+    animation: bellSwing 2s ease-in-out infinite;
+}
+
+@keyframes bannerFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes bellSwing {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 992px) {
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-header {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .admin-header-left h1 {
+        font-size: 1rem;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr 1fr;
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-number {
+        font-size: 1.4rem;
+    }
+
+    .filters-bar {
+        padding: 0 16px 16px;
+    }
+
+    .filter-group {
+        min-width: 100%;
+    }
+
+    .bookings-section {
+        padding: 0 16px 16px;
+    }
+
+    .bookings-table thead th,
+    .bookings-table tbody td {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+    }
+
+    .admin-live-badge {
+        display: none;
+    }
+
+    .next-booking-content {
+        font-size: 0.8rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .login-card {
+        padding: 32px 24px;
+    }
+}

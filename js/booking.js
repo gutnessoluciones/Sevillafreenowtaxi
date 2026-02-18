@@ -329,6 +329,8 @@ async function confirmBooking() {
         time: selectedSlot,
         duration: duration,
         price: price,
+        status: "pendiente",
+        timestamp: Date.now(),
         createdAt: new Date().toISOString()
     };
 

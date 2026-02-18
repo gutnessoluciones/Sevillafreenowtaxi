@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Panel Admin — Sevilla FreeNow Taxi</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- LOGIN SCREEN -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <img src="img/logo-full.png" alt="Logo" class="login-logo">
+            <h1>Panel de Administración</h1>
+            <p>Introduce la contraseña de acceso</p>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Acceder
+                </button>
+                <p class="login-error" id="loginError"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div class="admin-dashboard" id="adminDashboard" style="display:none">
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <img src="img/logo-full.png" alt="Logo" class="admin-logo">
+                <div>
+                    <h1>Panel de Reservas</h1>
+                    <p class="admin-subtitle">Sevilla FreeNow Taxi</p>
+                </div>
+            </div>
+            <div class="admin-header-right">
+                <span class="admin-live-badge" id="liveBadge">
+                    <span class="live-dot"></span> En vivo
+                </span>
+                <button class="btn-icon" id="refreshBtn" title="Actualizar">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <a href="index.html" class="btn-icon" title="Ir a la web">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+                <button class="btn-icon" id="logoutBtn" title="Cerrar sesión">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- STATS CARDS -->
+        <section class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="statToday">0</span>
+                    <span class="stat-label">Reservas hoy</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon tomorrow"><i class="fas fa-calendar-plus"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="statTomorrow">0</span>
+                    <span class="stat-label">Reservas mañana</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon week"><i class="fas fa-calendar-week"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="statWeek">0</span>
+                    <span class="stat-label">Esta semana</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon total"><i class="fas fa-chart-bar"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="statTotal">0</span>
+                    <span class="stat-label">Total reservas</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FILTERS -->
+        <section class="filters-bar">
+            <div class="filter-group">
+                <label><i class="fas fa-search"></i></label>
+                <input type="text" id="filterSearch" placeholder="Buscar por nombre o teléfono...">
+            </div>
+            <div class="filter-group">
+                <label><i class="fas fa-calendar"></i></label>
+                <input type="date" id="filterDate">
+            </div>
+            <div class="filter-group">
+                <label><i class="fas fa-concierge-bell"></i></label>
+                <select id="filterService">
+                    <option value="">Todos los servicios</option>
+                    <option value="urbano">Servicio Urbano</option>
+                    <option value="panoramica">Ruta Panorámica</option>
+                    <option value="aeropuerto">Aeropuerto</option>
+                    <option value="estacion">Estación de Tren</option>
+                    <option value="paqueteria">Paquetería Express</option>
+                    <option value="interurbano">Ruta Interurbana</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label><i class="fas fa-filter"></i></label>
+                <select id="filterStatus">
+                    <option value="">Todas</option>
+                    <option value="pendiente">Pendientes</option>
+                    <option value="confirmada">Confirmadas</option>
+                    <option value="completada">Completadas</option>
+                    <option value="cancelada">Canceladas</option>
+                </select>
+            </div>
+            <button class="btn-clear-filters" id="clearFilters">
+                <i class="fas fa-times"></i> Limpiar
+            </button>
+        </section>
+
+        <!-- BOOKINGS TABLE -->
+        <section class="bookings-section">
+            <div class="bookings-header">
+                <h2><i class="fas fa-list"></i> Reservas <span id="bookingCount"></span></h2>
+                <button class="btn-export" id="exportBtn">
+                    <i class="fas fa-download"></i> Exportar CSV
+                </button>
+            </div>
+            <div class="table-wrapper">
+                <table class="bookings-table" id="bookingsTable">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cliente</th>
+                            <th>Teléfono</th>
+                            <th>Servicio</th>
+                            <th>Reservado el</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsBody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="no-bookings" id="noBookings" style="display:none">
+                <i class="fas fa-inbox"></i>
+                <p>No hay reservas que mostrar</p>
+            </div>
+        </section>
+
+        <!-- NEXT BOOKING ALERT -->
+        <div class="next-booking-banner" id="nextBookingBanner" style="display:none">
+            <div class="next-booking-content">
+                <i class="fas fa-bell"></i>
+                <div>
+                    <strong>Próxima reserva:</strong>
+                    <span id="nextBookingInfo"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>
