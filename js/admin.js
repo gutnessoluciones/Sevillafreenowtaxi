@@ -453,7 +453,7 @@ function renderBookings() {
                 <td>${prettyTimestamp(b.timestamp)}</td>
                 <td>
                     <div class="action-btns">
-                        <button class="action-btn whatsapp" title="WhatsApp" onclick="adminActions.whatsapp('${b.phone || ''}', '${escapeAttr(b.name || '')}', '${b.date || ''}', '${b.time || ''}')">
+                        <button class="action-btn whatsapp" title="WhatsApp" onclick="adminActions.whatsapp('${b.phone || ''}', '${escapeAttr(b.name || '')}', '${b.date || ''}', '${b.time || ''}', '${b.lang || 'es'}')">
                             <i class="fab fa-whatsapp"></i>
                         </button>
                         ${status === 'pendiente' ? `
@@ -517,7 +517,7 @@ window.adminActions = {
             if (newStatus === 'confirmada') {
                 const booking = allBookings.find(b => b.id === bookingId);
                 if (booking && booking.phone) {
-                    this.whatsapp(booking.phone, booking.name, booking.date, booking.time);
+                    this.whatsapp(booking.phone, booking.name, booking.date, booking.time, booking.lang || 'es');
                     showAdminToast('✅ Reserva confirmada — WhatsApp enviado', 'success');
                 }
             }
@@ -528,13 +528,16 @@ window.adminActions = {
         }
     },
 
-    whatsapp(phone, name, date, time) {
+    whatsapp(phone, name, date, time, lang) {
         const cleanPhone = (phone || '').replace(/\D/g, '');
         const fullPhone = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
         const { day } = prettyDate(date);
-        const msg = encodeURIComponent(
-            `Hola ${name}, le confirmamos su reserva de taxi para el ${day} a las ${time}. Gracias por confiar en Sevilla FreeNow Taxi!`
-        );
+        const messages = {
+            es: `Hola ${name}, le confirmamos su reserva de taxi para el ${day} a las ${time}. Gracias por confiar en Sevilla FreeNow Taxi!`,
+            en: `Hello ${name}, we confirm your taxi booking for ${day} at ${time}. Thank you for choosing Sevilla FreeNow Taxi!`,
+            fr: `Bonjour ${name}, nous confirmons votre reservation de taxi pour le ${day} a ${time}. Merci de faire confiance a Sevilla FreeNow Taxi!`
+        };
+        const msg = encodeURIComponent(messages[lang] || messages.es);
         window.open(`https://wa.me/${fullPhone}?text=${msg}`, '_blank');
     }
 };

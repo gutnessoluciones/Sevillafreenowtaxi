@@ -412,6 +412,8 @@ async function confirmBooking() {
     const duration = getSelectedDuration();
     const price = getSelectedPrice();
 
+    const currentLang = (window.i18n && window.i18n.getCurrentLang) ? window.i18n.getCurrentLang() : 'es';
+
     const booking = {
         name: nombre,
         phone: telefono,
@@ -424,6 +426,7 @@ async function confirmBooking() {
         time: selectedSlot,
         duration: duration,
         price: price,
+        lang: currentLang,
         status: "pendiente",
         timestamp: Date.now(),
         createdAt: new Date().toISOString()
@@ -450,18 +453,43 @@ async function confirmBooking() {
         <div class="confirm-row total"><span><i class="fas fa-tag"></i> Precio</span><strong>${esEmpresa ? finalPrice : price}€</strong></div>
     `;
 
-    // WhatsApp link for client to contact
-    let msg = `*RESERVA CONFIRMADA*\n\n`;
-    msg += `*Nombre:* ${nombre}\n`;
-    msg += `*Telefono:* ${telefono}\n`;
-    msg += `*Servicio:* ${servicioText}\n`;
-    msg += `*Fecha:* ${formatDateDisplay(selectedDate)}\n`;
-    msg += `*Hora:* ${selectedSlot}\n`;
-    msg += `*Pasajeros:* ${pasajeros}\n`;
-    if (recogida) msg += `*Recogida:* ${recogida}\n`;
-    if (esEmpresa) msg += `\n*Cliente Empresa* — Dto. 15% -> ${finalPrice}EUR\n`;
-    msg += `\n*Total:* ${esEmpresa ? finalPrice : price}EUR`;
-    msg += `\n\n_Reserva automatica desde sevillafreenowtaxi.com_`;
+    // WhatsApp link for client — translated
+    const waMessages = {
+        es: {
+            title: '*RESERVA CONFIRMADA*',
+            name: '*Nombre:*', phone: '*Telefono:*', service: '*Servicio:*',
+            date: '*Fecha:*', time: '*Hora:*', passengers: '*Pasajeros:*',
+            pickup: '*Recogida:*', company: '*Cliente Empresa*',
+            total: '*Total:*', footer: '_Reserva desde sevillafreenowtaxi.com_'
+        },
+        en: {
+            title: '*BOOKING CONFIRMED*',
+            name: '*Name:*', phone: '*Phone:*', service: '*Service:*',
+            date: '*Date:*', time: '*Time:*', passengers: '*Passengers:*',
+            pickup: '*Pick-up:*', company: '*Business Client*',
+            total: '*Total:*', footer: '_Booked via sevillafreenowtaxi.com_'
+        },
+        fr: {
+            title: '*RESERVATION CONFIRMEE*',
+            name: '*Nom:*', phone: '*Telephone:*', service: '*Service:*',
+            date: '*Date:*', time: '*Heure:*', passengers: '*Passagers:*',
+            pickup: '*Prise en charge:*', company: '*Client Entreprise*',
+            total: '*Total:*', footer: '_Reservation via sevillafreenowtaxi.com_'
+        }
+    };
+    const wt = waMessages[currentLang] || waMessages.es;
+
+    let msg = `${wt.title}\n\n`;
+    msg += `${wt.name} ${nombre}\n`;
+    msg += `${wt.phone} ${telefono}\n`;
+    msg += `${wt.service} ${servicioText}\n`;
+    msg += `${wt.date} ${formatDateDisplay(selectedDate)}\n`;
+    msg += `${wt.time} ${selectedSlot}\n`;
+    msg += `${wt.passengers} ${pasajeros}\n`;
+    if (recogida) msg += `${wt.pickup} ${recogida}\n`;
+    if (esEmpresa) msg += `\n${wt.company} — -15% -> ${finalPrice}EUR\n`;
+    msg += `\n${wt.total} ${esEmpresa ? finalPrice : price}EUR`;
+    msg += `\n\n${wt.footer}`;
 
     document.getElementById('confirmWhatsApp').href = `https://wa.me/34664425403?text=${encodeURIComponent(msg)}`;
 
