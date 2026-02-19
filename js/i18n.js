@@ -73,7 +73,7 @@ const translations = {
         "guides.feat1": "Ruta Panorámica en Taxi (2h) — 47€",
         "guides.feat2": "Guías profesionales certificados",
         "guides.feat3": "Tours personalizados a tu medida",
-        "guides.feat4": "Colaboración con",
+        "guides.feat4": "Colaboración con <a href='http://www.paseandoporsevilla.com/?page_id=90&lang=es' target='_blank'>Paseando por Sevilla</a>",
         "guides.cta": "Reservar Visita Guiada",
 
         // Business
@@ -126,6 +126,8 @@ const translations = {
         "booking.pickup": "Dirección de recogida",
         "booking.pickup.ph": "Ej: Hotel Alfonso XIII, Calle San Fernando 2",
         "booking.company": "Soy empresa (descuento 15% + factura)",
+        "booking.privacy": "Acepto la <a href='/politica-privacidad' target='_blank'>Política de Privacidad</a>",
+        "booking.privacy.error": "Debes aceptar la Política de Privacidad para continuar",
         "booking.next": "Elegir Fecha y Hora",
         "booking.step2.title": "Elige fecha y hora",
         "booking.weekdays": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
@@ -274,7 +276,7 @@ const translations = {
         "guides.feat1": "Panoramic Taxi Tour (2h) — €47",
         "guides.feat2": "Certified professional guides",
         "guides.feat3": "Tailor-made tours",
-        "guides.feat4": "In partnership with",
+        "guides.feat4": "In partnership with <a href='http://www.paseandoporsevilla.com/?page_id=90&lang=es' target='_blank'>Paseando por Sevilla</a>",
         "guides.cta": "Book a Guided Tour",
 
         // Business
@@ -327,6 +329,8 @@ const translations = {
         "booking.pickup": "Pick-up address",
         "booking.pickup.ph": "E.g.: Hotel Alfonso XIII, Calle San Fernando 2",
         "booking.company": "I'm a business (15% discount + invoice)",
+        "booking.privacy": "I accept the <a href='/politica-privacidad' target='_blank'>Privacy Policy</a>",
+        "booking.privacy.error": "You must accept the Privacy Policy to continue",
         "booking.next": "Choose Date & Time",
         "booking.step2.title": "Choose date & time",
         "booking.weekdays": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -474,7 +478,7 @@ const translations = {
         "guides.feat1": "Circuit Panoramique en Taxi (2h) — 47€",
         "guides.feat2": "Guides professionnels certifiés",
         "guides.feat3": "Visites sur mesure",
-        "guides.feat4": "En collaboration avec",
+        "guides.feat4": "En collaboration avec <a href='http://www.paseandoporsevilla.com/?page_id=90&lang=es' target='_blank'>Paseando por Sevilla</a>",
         "guides.cta": "Réserver une Visite Guidée",
 
         // Business
@@ -527,6 +531,8 @@ const translations = {
         "booking.pickup": "Adresse de prise en charge",
         "booking.pickup.ph": "Ex : Hôtel Alfonso XIII, Calle San Fernando 2",
         "booking.company": "Je suis une entreprise (réduction 15% + facture)",
+        "booking.privacy": "J'accepte la <a href='/politica-privacidad' target='_blank'>Politique de Confidentialité</a>",
+        "booking.privacy.error": "Vous devez accepter la Politique de Confidentialité pour continuer",
         "booking.next": "Choisir Date et Heure",
         "booking.step2.title": "Choisissez date et heure",
         "booking.weekdays": ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],

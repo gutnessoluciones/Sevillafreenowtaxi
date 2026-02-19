@@ -360,10 +360,22 @@ function validateStep1() {
     const nombre = document.getElementById('bk-nombre').value.trim();
     const telefono = document.getElementById('bk-telefono').value.trim();
     const servicio = document.getElementById('bk-servicio').value;
+    const privacidad = document.getElementById('bk-privacidad');
 
     if (!nombre) { shakeField('bk-nombre'); return false; }
     if (!telefono) { shakeField('bk-telefono'); return false; }
     if (!servicio) { shakeField('bk-servicio'); return false; }
+    if (privacidad && !privacidad.checked) {
+        shakeField('bk-privacidad');
+        const lang = (window.i18n && window.i18n.getCurrentLang) ? window.i18n.getCurrentLang() : 'es';
+        const msgs = {
+            es: 'Debes aceptar la Pol\u00edtica de Privacidad para continuar',
+            en: 'You must accept the Privacy Policy to continue',
+            fr: 'Vous devez accepter la Politique de Confidentialit\u00e9 pour continuer'
+        };
+        alert(msgs[lang] || msgs.es);
+        return false;
+    }
     return true;
 }
 
@@ -548,6 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('bk-servicio').selectedIndex = 0;
         document.getElementById('bk-recogida').value = '';
         document.getElementById('bk-empresa').checked = false;
+        document.getElementById('bk-privacidad').checked = false;
         showStep(1);
     });
 
